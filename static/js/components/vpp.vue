@@ -1,7 +1,7 @@
 <template>
     <div>
         <Navbar></Navbar>
-        <transition :name="pageDirection">
+        <transition :name="transitionName">
             <router-view class="child-view"></router-view>
         </transition>
     </div>
@@ -12,23 +12,18 @@
         name: 'vpp',
         data(){
             return {
-                pageDirection: 'slide-right'  // 默认动态路由变化为slide-right
+                transitionName: 'slide-left'  // 默认动态路由变化为slide-right
             }
         },
         components:{
             Navbar
         },
-        methods:{
-            _back(){
-                this.$router.go(-1);
-            }
-        },
         watch: {
-    　　　'$route' (to, from) {
-    　　　　　　const toDepth = to.path.split('/').length
+    　　　 '$route' (to, from) {
+　　　　　　    const toDepth = to.path.split('/').length
                 const fromDepth = from.path.split('/').length
-                this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
-    　　　　　}
+                this.transitionName = toDepth > fromDepth ? 'slide-right' : 'slide-left';
+　　　　　　}
     　  }
     }
 </script>
