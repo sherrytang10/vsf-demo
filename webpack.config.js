@@ -30,10 +30,10 @@ module.exports = {
         //     filename: "commons.min.js",
         //     minChunks: 2,
         // }),
-        // new webpack.DefinePlugin({
-        //     // 开发环境是不是生产
-        //     PRODUCTION: JSON.stringify(false),
-        // }),
+        new webpack.DefinePlugin({
+            // 开发环境是不是生产
+            PRODUCTION: JSON.stringify(false),
+        }),
         new HtmlWebpackPlugin({  //根据模板插入css/js等生成最终HTML
             title: '测试',// 模板参数
             // msg: '这是一个测试参数的测试参数',// 模板参数

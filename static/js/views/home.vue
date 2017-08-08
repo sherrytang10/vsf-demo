@@ -33,7 +33,6 @@
         name: 'home',
         data(){
             return {
-                a: 1
             }
         },
         components: {

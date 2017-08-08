@@ -19,23 +19,26 @@
 </div>
 </template>
 <script>
+    import {mapState} from 'vuex';
     export default {
         name: 'evaluateList',
         data(){
+            console.log(this)
             return {
-                userinfo: {
-                    id: 1,
-                    name: '--',
-                    position: '--'
-                },
-                curriculumList: []
             }
         },
+        computed: {
+            ...mapState('evaluate', {
+                userinfo: state => state.userinfo,
+                curriculumList: state => state. curriculumList
+            })
+        },
         mounted() {
-            this.$.get('/getStudentInfo')
-                .then( data => this.userinfo = data.results , err => console.log(err));
-            this.$.post('getCurriculumListBiId', {studentId: this.userinfo.id})
-                .then(data => this.curriculumList = data.results, err => console.log(err));
+            this.$store.dispatch('getStudentInfo');
+            // this.$.get('/getStudentInfo')
+            //     .then( data => this.userinfo = data.results , err => console.log(err));
+            // this.$.post('getCurriculumListBiId', {studentId: this.userinfo.id})
+            //     .then(data => this.curriculumList = data.results, err => console.log(err));
         }
     }
 </script>
