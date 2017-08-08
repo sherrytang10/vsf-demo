@@ -1,11 +1,8 @@
 <template>
-    <div>
-        <div class="navbar">
-            <span class="navbar-left" @click="_back"><返回</span>
-            <span class="navbar-title">title</span>
-            <span class="navbar-right">more</span>
-        </div>
-        <router-view></router-view>
+    <div class="navbar">
+        <span class="navbar-left" @click="_back"><返回</span>
+        <span class="navbar-title">title</span>
+        <span class="navbar-right">more</span>
     </div>
 </template>
 <script>
