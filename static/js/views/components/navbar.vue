@@ -28,9 +28,10 @@
     }
     .navbar-left{
         float: left;
+        padding-left: .1rem;
     }
     .navbar-right{
-        padding-right: .1rem;
         float: right;
+        padding-right: .1rem;
     }
 </style>
