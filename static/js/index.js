@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import routes from './router/route.js';
 import axios from './common/axios.js';
 import mixin from './common/mixin.js';
+import Navbar from './views/components/navbar.vue';
 import '../css/layout.css';
 import '../css/iconfont/iconfont.css';
 
@@ -18,5 +19,8 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
+    components:{
+        Navbar: Navbar
+    },
     router
 });
