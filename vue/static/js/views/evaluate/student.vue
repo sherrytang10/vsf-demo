@@ -19,10 +19,11 @@
 </div>
 </template>
 <script>
-    import {mapState, mapActions} from 'vuex';
+    import {mapState} from 'vuex';
     export default {
         name: 'evaluateList',
         data(){
+            console.log(this)
             return {
             }
         },
@@ -30,24 +31,14 @@
             ...mapState('evaluate', {
                 userinfo: state => state.userinfo,
                 curriculumList: state => state. curriculumList
-            }),
-            //  ...mapActions('evaluate', ['getStudentInfo','getCurriculumListBiId'])
+            })
         },
-        methods:{
-             ...mapActions('evaluate', ['getStudentInfo','getCurriculumListBiId'])
-            // .then( data => {
-            //     console.log(data)
-            // })
-
+        mounted() {
+            this.$store.dispatch('getStudentInfo');
             // this.$.get('/getStudentInfo')
             //     .then( data => this.userinfo = data.results , err => console.log(err));
             // this.$.post('getCurriculumListBiId', {studentId: this.userinfo.id})
             //     .then(data => this.curriculumList = data.results, err => console.log(err));
-        },
-        created(){
-            this.getStudentInfo().then( () => {
-                this.getCurriculumListBiId(this.userinfo.id);
-            });
         }
     }
 </script>

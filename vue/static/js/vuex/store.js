@@ -1,7 +1,6 @@
 'use strict';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import axios from '../common/axios.js';
 import getters from './getters.js';
 import actions from './actions.js';
 import mutations from './mutations.js';
@@ -9,7 +8,6 @@ import mutations from './mutations.js';
 import evaluateStore from './modules/evaluate/index';
 
 Vue.use(Vuex);
-Vue.use(axios);
 
 let store = new Vuex.Store({
     // 插件挂载
@@ -21,12 +19,8 @@ let store = new Vuex.Store({
     },
     // 组件调用store.state.xxx
     state: {
-        // $: Vue.prototype.$
     },
-    getters:{
-        ...getters,
-        $: Vue.prototype.$
-    },
+    getters,
     actions,
     mutations
 });

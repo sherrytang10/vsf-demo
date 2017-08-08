@@ -9,7 +9,7 @@ axios.interceptors.response.use(
                 alert(res.status + ':' + res.errmsg);
                 return;
             } else {
-                return res; 
+                return res;
             }
         } else {
             alert('系统异常' + res.statue)

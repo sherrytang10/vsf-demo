@@ -1,8 +1,11 @@
 // 异步提交
 export default {
-    getStudentInfo: async function({ state, dispatch, commit, getters, rootGetters }, params){
-        let data = await this.$.get('/getStudentInfo');
-                //.then( data => this.userinfo = data.results , err => console.log(err));
-        console.log(data);
+    getStudentInfo: function({ state, dispatch, commit, getters, rootGetters }, params){
+        return rootGetters.$.get('/getStudentInfo')
+                .then( data => {state.userinfo = data.results}, err => console.log(err));
+    },
+    getCurriculumListBiId: function({state, rootGetters}){
+        rootGetters.$.post('getCurriculumListBiId', {studentId: state.userinfo.id})
+            .then(data => state.curriculumList = data.results, err => console.log(err));
     }
 }
