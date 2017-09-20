@@ -1,0 +1,48 @@
+@import "../variables.scss";
+@import "../mixin.scss";
+.#{$css-prefix}{
+    &-btn-group{
+        display: block;
+        width: 100%;
+        padding: 0 .2rem;
+        background: transparent;
+        @include  box-sizing;
+    }
+    &-btn{
+        display: block;
+        margin-top: .3rem;
+        width: 100%;
+        @include  height($btn-height);
+        color: #111;
+        border: 1px solid #f0f0f0;
+        font-size: .42rem;
+        // background-color: #fff;
+        @include tap-color;
+        /*大小*/
+        &-small{
+            display: inline-block;
+            margin-top: .3rem;
+            padding: 0 .5rem;
+            width: auto;
+            @include height($btn-small-height)
+            font-size: .38rem;
+        }
+        /*类型*/
+        &-primary{
+            @include tap-color(#e2233e);
+            color: #fff;
+        }
+        &-disabled{
+            @include tap-color(#ccc);
+            color: #fff;
+            pointer-events: none;
+        }
+        /*圆角*/
+        &-circular{
+            border-radius: $btn-height;
+        }
+        &-half{
+            border-radius: $btn-small-height / 4
+        }
+    }
+}

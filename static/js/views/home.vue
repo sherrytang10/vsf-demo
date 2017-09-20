@@ -1,38 +1,20 @@
 <template>
     <div class="container">
-        <router-link to="/evaluate/student?t=1" class="lattice-menu">
-            <img src="" alt="" class="lattice-icon">
-            学业评价
-        </router-link>
-        <router-link to="/evaluate/student?t=2" class="lattice-menu">
-            <img src="" alt="" class="lattice-icon">
-            德育评价{&shy;{aaa}}
-        </router-link>
-
-        <router-link to="/evaluate/student?t=1" class="lattice-menu">
-            <img src="" alt="" class="lattice-icon">
-            学业评价
-        </router-link>
-        <router-link to="/evaluate/student?t=2" class="lattice-menu">
-            <img src="" alt="" class="lattice-icon">
-            德育评价
-        </router-link>
-
-        <router-link to="/evaluate/student?t=1" class="lattice-menu">
-            <img src="" alt="" class="lattice-icon">
-            学业评价
-        </router-link>
-        <router-link to="/evaluate/student?t=2" class="lattice-menu">
-            <img src="" alt="" class="lattice-icon">
-            德育评价
-        </router-link>
+        <template v-for="(item, index) in menu">
+            <router-link :to="`/${item}`" class="lattice-menu" :key="index">
+                <img src="" alt="" class="lattice-icon">
+                {{item}}
+            </router-link>
+        </template>
     </div>
 </template>
 <script>
     export default {
         name: 'home',
         data(){
+            let menu = ['button', 'listview'];
             return {
+                menu: {...menu}
             }
         },
         components: {

@@ -8,9 +8,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打
 const root = path.resolve(__dirname, './') // 项目的根目录绝对路径
 
 
-shell.rm('-rf', './dist/')
-shell.mkdir('-p', './dist/js/common')
-shell.cp('-R', './static/js/common/flexible_v2.js', './dist/js/common');
+// shell.rm('-rf', './dist/')
+// shell.mkdir('-p', './dist/js/common')
+// shell.cp('-R', './static/js/common/flexible_v2.js', './dist/js/common');
 
 
 module.exports = {
@@ -60,7 +60,7 @@ module.exports = {
                 loader: 'babel-loader',
                 query:{
                     // .babelrc 存在是   优先.babelrc
-                    presets:['es2015'],
+                    presets:['es2015', 'stage-1'],
                     // 解决编译打包后 $export is not a function  异常
                     plugins: [['transform-runtime', {
                               helpers: false,
@@ -75,8 +75,11 @@ module.exports = {
             }, {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract({fallback:"style-loader",use:"css-loader"})
-                // use: ExtractTextPlugin.extract({fallback:"style-loader",use:["css-loader"]})
+                // use: ExtractTextPlugin.extract({fallback:"style-loader",use:["css-loader","sass-loader"]})
             }, {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract({fallback:"style-loader",use:["css-loader", "sass-loader"]})
+            },{
                 test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
                 loader: 'file-loader',
                 query: {

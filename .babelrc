@@ -1,7 +1,8 @@
 {
     "presets": [
         "es2015",
-        "stage-3" // async/await
+        "stage-3", // async/await
+        "stage-1" //class static
     ],
     "plugins": [
         // 解决编译打包后 $export is not a function  异常

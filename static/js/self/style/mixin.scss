@@ -1,0 +1,15 @@
+@mixin height($height: 1rem) {
+    height: $height;
+    line-height: $height;
+}
+// 按下去背景颜色
+@mixin tap-color($color: #fff, $opacity: .9) {
+    background-color: $color;
+    &:active{
+        background-color: $color * $opacity;
+    }
+}
+@mixin box-sizing($type: border-box) {
+    box-sizing: $type;
+    -webkit-box-sizing: $type;
+}
