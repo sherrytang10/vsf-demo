@@ -1,7 +1,7 @@
 <template>
     <div>
         <sf-navbar title="测试">
-            <span slot="left" @click="_back"><返回</span>
+            <span slot="left" @click="goBack"><返回</span>
 
         </sf-navbar>
         <transition :name="transitionName">
@@ -26,7 +26,7 @@
             Navbar
         },
         methods:{
-            _back(){
+            goBack(){
                 if(this.$router){
                     // this.defaultTransitionName = ['slide-left'];
                     this.defaultTransitionName = 'slide-left';

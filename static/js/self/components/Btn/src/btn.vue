@@ -17,7 +17,7 @@
                 type: String,
                 // 自定义验证函数
                 validator(val) {
-                    return ['', 'primary', 'disabled'].indexOf(val) > -1;
+                    return ['', 'fall', 'rise', 'disabled'].indexOf(val) > -1;
                 },
                 default: '',
             },

@@ -11,4 +11,8 @@ default [{
     path: '/listview',
     name: 'listview',
     component: require('../components/listview')
+},{
+    path: '/pannel',
+    name: 'pannel',
+    component: require('../components/pannel')
 }]

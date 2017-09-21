@@ -14,7 +14,7 @@
         width: 100%;
         @include  height($btn-height);
         color: #111;
-        border: 1px solid #f0f0f0;
+        border: 1px solid $other-color;
         font-size: .42rem;
         // background-color: #fff;
         @include tap-color;
@@ -28,14 +28,21 @@
             font-size: .38rem;
         }
         /*类型*/
-        &-primary{
-            @include tap-color(#e2233e);
-            color: #fff;
+        &-rise{
+            @include tap-color(#fff, $rise-color);
+        }
+        &-fall{
+            @include tap-color(#fff, $fall-color);
         }
         &-disabled{
-            @include tap-color(#ccc);
-            color: #fff;
+            @include tap-color(#fff, $disabled-color);
             pointer-events: none;
+        }
+        &-primary{
+            @include tap-color(#fff, $primary-color);
+        }
+        &-danger{
+            @include tap-color(#fff, $danger-color);
         }
         /*圆角*/
         &-circular{

@@ -81,7 +81,7 @@ body{
     margin:0 auto;
     /*max-width:640px; */
     min-width:320px;
-    color:#555;
+    color:#111;
     background-color: #fff;
     height:100%;
 }
@@ -89,6 +89,8 @@ body{
 html,body,#app,.container{
     height: 100%;
 }
+
+
 /*
 @media screen and (min-width: 320px) {
     html {font-size: 14px;}

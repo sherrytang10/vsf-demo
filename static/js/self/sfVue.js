@@ -1,11 +1,12 @@
 import './style/layout.scss';
-
+import './style/iconfont/iconfont.css';
 import {Navbar} from './components/navbar';
 import {Vpp} from './components/vpp';
 import {Album} from './components/album';
 import {Btn, BtnGroup} from './components/Btn';
 import {Slide, SlideItem} from './components/slide';
 import {ListView, ListItem} from './components/ListView';
+import {Pannel} from './components/Pannel';
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
 }, false);
@@ -20,6 +21,7 @@ const install = function (Vue) {
     Vue.component(BtnGroup.name, BtnGroup);
     Vue.component(ListView.name, ListView);
     Vue.component(ListItem.name, ListItem);
+    Vue.component(Pannel.name, Pannel);
     // Vue.prototype.$dialog = {
     //     confirm: Confirm,
     //     alert: Alert,
