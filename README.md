@@ -25,7 +25,7 @@ $ cd vsf && npm install
 
 然后，执行命令：
 ```
-$ npm run 启动服务
+$ npm run dev 启动服务
 $ npm run build 启动编译
 ```
 
@@ -53,9 +53,9 @@ $ npm run build 启动编译
 │   |   ├── self UI库
 │   |   ├── views
 │   |   ├── vuex  未集成
-│   ├── template  
-│   └── index.html  
-└── app.js  
+│   ├── template
+│   └── index.html
+└── app.js
 
 ```
 
