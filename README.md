@@ -36,28 +36,26 @@ $ npm run build 启动编译
 
 ### 目录结构
 
-├── dist 
-
-│   ├── css 
-
-│   ├── images 
-│   ├── iconfont 
-│   ├── js 
-│   └── index.html 
-├── src 
-│   ├── data 
-│   ├── router 
-├── static 
-│   ├── js 
-│   │   ├── common
-│   │   ├── components
-│   │   ├── router
-│   │   ├── self UI库
-│   │   ├── views
-│   │   ├── vuex  未集成
-│   ├── template
+├── dist
+│   ├── css
+│   ├── images
+│   ├── iconfont
+│   ├── js
 │   └── index.html
-└── app.js
+├── src
+│   ├── data
+│   ├── router
+├── static
+│   ├── js
+|   |   ├── common
+│   |   ├── components
+│   |   ├── router
+│   |   ├── self UI库
+│   |   ├── views
+│   |   ├── vuex  未集成
+│   ├── template  
+│   └── index.html  
+└── app.js  
 
 ```
 
