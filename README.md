@@ -1,4 +1,4 @@
-> 仿写一个蘑菇租房app的小demo， 练手
+> 一个vue的小UI库， 练手
 # koa-all
 
 基于[Vue](https://github.com/vuejs/vue)的一个UI组件小demo。。
@@ -36,27 +36,26 @@ $ npm run build 启动编译
 
 ### 目录结构
 
-├── dist
-│   ├── css
-│   ├── images
-│   ├── iconfont
-│   ├── js
-│   └── index.html
-├── src
-│   ├── data
-│   ├── router
-├── static
-│   ├── js
-|   |   ├── common
-│   |   ├── components
-│   |   ├── router
-│   |   ├── self UI库
-│   |   ├── views
-│   |   ├── vuex  未集成
-│   ├── template
-│   └── index.html
-└── app.js
-
+    ├── dist
+    │   ├── css
+    │   ├── images
+    │   ├── iconfont
+    │   ├── js
+    │   └── index.html
+    ├── src
+    │   ├── data
+    │   ├── router
+    ├── static
+    │   ├── js
+    |   |   ├── common
+    │   |   ├── components
+    │   |   ├── router
+    │   |   ├── self UI库
+    │   |   ├── views
+    │   |   ├── vuex  未集成
+    │   ├── template
+    │   └── index.html
+    └── app.js
 ```
 
 其中：
