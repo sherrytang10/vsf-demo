@@ -36,17 +36,17 @@ $ npm run build 启动编译
 
 ### 目录结构
 
-├── dist
-│   ├── css
-│   ├── images
-│   ├── iconfont
-│   ├── js
-│   └── index.html
-├── src
-│   ├── data
-│   ├── router
-├── static
-│   ├── js
+├── dist 
+│   ├── css 
+│   ├── images 
+│   ├── iconfont 
+│   ├── js 
+│   └── index.html 
+├── src 
+│   ├── data 
+│   ├── router 
+├── static 
+│   ├── js 
 │   │   ├── common
 │   │   ├── components
 │   │   ├── router
