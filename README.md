@@ -37,7 +37,9 @@ $ npm run build 启动编译
 ### 目录结构
 
 ├── dist 
+
 │   ├── css 
+
 │   ├── images 
 │   ├── iconfont 
 │   ├── js 
