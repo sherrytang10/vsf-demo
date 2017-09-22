@@ -12,7 +12,7 @@
     export default {
         name: 'home',
         data(){
-            let menu = ['button', 'listview', 'pannel'];
+            let menu = ['button', 'listview', 'pannel', 'from'];
             return {
                 menu: {...menu}
             }

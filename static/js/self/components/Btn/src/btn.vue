@@ -2,6 +2,7 @@
 <button :class="classes" :disabled="disabled"><slot></slot></button>
 </template>
 <script>
+    import Util from '../../../util.js';
     export default{
         name: 'sf-btn',
         props:{
@@ -16,8 +17,8 @@
             type:{
                 type: String,
                 // 自定义验证函数
-                validator(val) {
-                    return ['', 'fall', 'rise', 'disabled'].indexOf(val) > -1;
+                validator(val){
+                    return Util.typeValidator(val);
                 },
                 default: '',
             },
@@ -32,8 +33,10 @@
             classes(){
                 let {size, type, shape} = this;
                 size = size ? `sf-btn-${size}` : `sf-btn`;
-                type = type ? `sf-btn-${type}` : ``;
                 shape = shape ? `sf-btn-${shape}` : ``;
+                /*public 公共背景色测试*/
+                // type = type ? `sf-btn-${type}` : ``;
+                type = Util.typeClass(type);
                 return `${size} ${type} ${shape}`;
             }
         }

@@ -1,5 +1,6 @@
-@import "../variables.scss";
-@import "../mixin.scss";
+@import "../common/variables.scss";
+@import "../common/mixin.scss";
+@import "../common/extend.scss";
 
 
 $_prefix: #{$css-prefix}-pannel;
@@ -13,7 +14,6 @@ $_pannel_hide: #{$_prefix}-hide;
         @include tap-color($color, $bgColor);
     }
     .#{$_prefix_body}{
-        @include radius-bottom;
         border: 1px solid $bgColor;
     }
 }
@@ -23,11 +23,11 @@ $_pannel_hide: #{$_prefix}-hide;
 
         /* 面板展开/收缩-  展示 及 动画*/
         .#{$_prefix}-expand:before{
-            content: '\E661';
+            @extend .icon-unfold:before;
         }
-        #{$_pannel_hide}{
+        &-hide{
             .#{$_prefix}-expand:before{
-                content: '\E6A3';
+                @extend .icon-right:before;
             }
         }
 
@@ -46,16 +46,20 @@ $_pannel_hide: #{$_prefix}-hide;
             }
         }
         /*颜色 默认primary*/
+        /*public 公共背景色测试*/
         &-danger{
             @include set-color($danger-color)
         }
         &-fall{
             @include set-color($fall-color)
         }
+
+
         &-header{
             border: 1px solid $disabled-color;
             padding: 0 .2rem;
             @include height($pannel-height);
+            /*public 公共背景色测试*/
             @include tap-color(#111, $gray1-color);
             font-size: $default-font-size;
             @include disflex;

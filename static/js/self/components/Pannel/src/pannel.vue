@@ -11,6 +11,7 @@
     </div>
 </template>
 <script>
+// import Util from '../../../util.js';
 export default {
     name: 'sf-pannel',
     props:{
@@ -26,12 +27,11 @@ export default {
             default: '',
         },
         type:{
-            type: String,
             // 自定义验证函数
-            validator(val) {
-                return ['', 'danger', 'fall'].indexOf(val) > -1;
+            validator(val = 'gray1') {
+                return ['', 'danger', 'fall', 'gray1'].indexOf(val) > -1;
             },
-            default: '',
+            default: 'gray1',
         },
         show:{
             type: Boolean,
@@ -46,8 +46,11 @@ export default {
     computed:{
         classesHeader(){
             let {type, shape} = this;
-            type = this.joinStr(type);
             shape = this.joinStr(shape);
+            /*public 公共背景色测试*/
+            type = this.joinStr(type);
+            // pannel存在同时改变两个子元素的颜色 不适用
+            // type = Util.typeClass(type);
             return `sf-pannel ${type} ${shape} ${!this.isShow ? 'sf-pannel-hide' : ''}`;
         }
     },
@@ -61,6 +64,6 @@ export default {
     }
 }
 </script>
-<style lang="scss" type="text/css">
+<style lang="scss" type="text/css" scoped>
     @import '../../../style/components/pannel.scss';
 </style>

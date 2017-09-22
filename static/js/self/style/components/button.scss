@@ -1,5 +1,6 @@
-@import "../variables.scss";
-@import "../mixin.scss";
+@import "../common/variables.scss";
+@import "../common/mixin.scss";
+@import "../common/public.scss";
 .#{$css-prefix}{
     &-btn-group{
         display: block;
@@ -13,11 +14,13 @@
         margin-top: .3rem;
         width: 100%;
         @include  height($btn-height);
-        color: #111;
-        border: 1px solid $other-color;
+        border: 1px solid $gray-color;
         font-size: .42rem;
-        // background-color: #fff;
-        @include tap-color;
+
+        /*public 公共背景色测试*/
+        /* color: #111;
+        background-color: #fff;
+        @include tap-color; */
         /*大小*/
         &-small{
             display: inline-block;
@@ -28,7 +31,9 @@
             font-size: .38rem;
         }
         /*类型*/
-        &-rise{
+
+        /*public 公共背景色测试*/
+        /* &-rise{
             @include tap-color(#fff, $rise-color);
         }
         &-fall{
@@ -43,7 +48,7 @@
         }
         &-danger{
             @include tap-color(#fff, $danger-color);
-        }
+        } */
         /*圆角*/
         &-circular{
             border-radius: $btn-height;

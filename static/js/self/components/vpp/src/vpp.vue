@@ -5,9 +5,7 @@
 
         </sf-navbar>
         <transition :name="transitionName">
-            <div class="child-view">
-                <router-view></router-view>
-            </div>
+            <router-view class="child-view"></router-view>
         </transition>
     </div>
 </template>
@@ -53,7 +51,7 @@
     .navbar{
         height: .8rem;
         line-height: .8rem;
-        border-bottom: 1px solid #cdcdcd;
+        border-bottom: 2px solid #ccc;
         font-size: .32rem;
         text-align: center;
     }

@@ -26,7 +26,7 @@
     .navbar{
         height: .8rem;
         line-height: .8rem;
-        border-bottom: 1px solid #cdcdcd;
+        border-bottom: 2px solid #ccc;
         font-size: .32rem;
         text-align: center;
     }

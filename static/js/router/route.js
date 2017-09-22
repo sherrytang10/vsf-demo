@@ -15,4 +15,8 @@ default [{
     path: '/pannel',
     name: 'pannel',
     component: require('../components/pannel')
+},{
+    path: '/from',
+    name: 'from',
+    component: require('../components/from')
 }]
