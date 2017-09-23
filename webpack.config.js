@@ -8,9 +8,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打
 const root = path.resolve(__dirname, './') // 项目的根目录绝对路径
 
 
-// shell.rm('-rf', './dist/')
-// shell.mkdir('-p', './dist/js/common')
-// shell.cp('-R', './static/js/common/flexible_v2.js', './dist/js/common');
+shell.rm('-rf', './dist/')
+shell.mkdir('-p', './dist/js/common')
+shell.cp('-R', './static/js/common/flexible_v2.js', './dist/js/common');
 
 
 module.exports = {

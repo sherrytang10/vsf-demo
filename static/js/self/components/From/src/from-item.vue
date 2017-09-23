@@ -12,6 +12,9 @@
         <div :class="classes" v-else-if="type == 'radio'">
             <slot name="right"></slot>
         </div>
+        <div :class="classes" v-else-if="type == 'checkbox'">
+            <slot name="right"></slot>
+        </div>
         <div :class="classes" v-else>
             <slot name="right"></slot>
         </div>
@@ -33,7 +36,7 @@ export default{
         type:{
             type: [String],
             validator(val){
-                return ['div', 'a', 'link', 'radio', 'checbox'].indexOf(val) > -1;
+                return ['div', 'a', 'link', 'radio', 'checkbox'].indexOf(val) > -1;
             },
             default: 'div'
         }
