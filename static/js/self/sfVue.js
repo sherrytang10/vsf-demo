@@ -8,6 +8,7 @@ import {Slide, SlideItem} from './components/slide';
 import {ListView, ListItem} from './components/ListView';
 import {Pannel} from './components/Pannel';
 import {FromItem, FromGroup} from './components/From';
+import {Switch} from './components/Switch';
 window.document.addEventListener('touchstart', function (event) {
     /* Do Nothing */
 }, false);
@@ -25,6 +26,7 @@ const install = function (Vue) {
     Vue.component(Pannel.name, Pannel);
     Vue.component(FromItem.name, FromItem);
     Vue.component(FromGroup.name, FromGroup);
+    Vue.component(Switch.name, Switch);
     // Vue.prototype.$dialog = {
     //     confirm: Confirm,
     //     alert: Alert,

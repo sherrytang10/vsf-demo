@@ -17,27 +17,33 @@
             </sf-from-item>
         </sf-from-group>
         <sf-from-group title="radio">
-            <sf-from-item type="radio">
+            <sf-from-item type="input">
                 <span slot="left">单选一：</span>
                 <input slot="right" type="radio" name="sex">
             </sf-from-item>
-            <sf-from-item type="radio">
+            <sf-from-item type="input">
                 <span slot="left">单选二：</span>
                 <input slot="right" type="radio" name="sex">
             </sf-from-item>
         </sf-from-group>
         <sf-from-group title="checkbox">
-            <sf-from-item type="checkbox">
+            <sf-from-item type="input">
                 <span slot="left">多选一：</span>
                 <input slot="right" type="checkbox" name="sex">
             </sf-from-item>
-            <sf-from-item type="checkbox">
+            <sf-from-item type="input">
                 <span slot="left">多选二：</span>
                 <input slot="right" type="checkbox" name="sex">
             </sf-from-item>
-            <sf-from-item type="checkbox">
+            <sf-from-item type="input">
                 <span slot="left">多选三：</span>
                 <input slot="right" type="checkbox" name="sex">
+            </sf-from-item>
+        </sf-from-group>
+        <sf-from-group title="switch">
+            <sf-from-item>
+                <span slot="left">开关-{{isSwitch}}：</span>
+                <sf-switch slot="right" v-model="isSwitch"></sf-switch>
             </sf-from-item>
         </sf-from-group>
     </div>
@@ -46,7 +52,9 @@
     export default{
         name: 'from',
         data(){
-            return {}
+            return {
+                isSwitch: true
+            }
         }
     }
 </script>

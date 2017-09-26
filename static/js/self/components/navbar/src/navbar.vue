@@ -24,6 +24,7 @@
 </script>
 <style scoped>
     .navbar{
+        display: block;
         height: .8rem;
         line-height: .8rem;
         border-bottom: 2px solid #ccc;

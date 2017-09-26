@@ -19,4 +19,8 @@ default [{
     path: '/from',
     name: 'from',
     component: require('../components/from')
+},{
+    path: '/switch',
+    name: 'switch',
+    component: require('../components/switch')
 }]

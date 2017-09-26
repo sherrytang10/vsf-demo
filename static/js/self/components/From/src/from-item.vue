@@ -9,10 +9,13 @@
         <router-link :class="classes" v-else-if="type == 'link'" :to="link">
             <slot name="right"></slot>
         </router-link>
-        <div :class="classes" v-else-if="type == 'radio'">
+        <!-- <div :class="classes" v-else-if="type == 'radio'">
             <slot name="right"></slot>
         </div>
         <div :class="classes" v-else-if="type == 'checkbox'">
+            <slot name="right"></slot>
+        </div> -->
+        <div :class="classes" v-else-if="type == 'input'">
             <slot name="right"></slot>
         </div>
         <div :class="classes" v-else>
@@ -36,7 +39,7 @@ export default{
         type:{
             type: [String],
             validator(val){
-                return ['div', 'a', 'link', 'radio', 'checkbox'].indexOf(val) > -1;
+                return ['div', 'a', 'link', 'input'].indexOf(val) > -1;
             },
             default: 'div'
         }
@@ -45,7 +48,10 @@ export default{
         classes(){
             let classes = 'sf-from-right ';
             if(this.arrow) {
-                classes += 'iconfont sf-from-arrow';
+                classes += ' sf-from-arrow';
+            }
+            if(this.type == 'input') {
+                classes += ' sf-from-input';
             }
             return classes;
         }

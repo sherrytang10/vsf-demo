@@ -48,11 +48,12 @@ $item-border-color: #d9d9d9;
             justify-content: flex-end;
             color: $font-color;
             font-size: .3rem;
+        }
+        &-input{
             input[type="text"]{
                 width: 100%;
                 @include height(1rem);
             }
-
             /* radio checkbox 背景\选中*/
             @mixin mixin-checked{
                 width: .4rem;
@@ -69,8 +70,10 @@ $item-border-color: #d9d9d9;
                         content: '\E645';
                         display: inline-block;
                         position: absolute;
-                        top: .06rem;
-                        left: .04rem;
+                        top: 50%;
+                        left: 50%;
+                        margin-top: -.14rem;
+                        margin-left: -.14rem;
                         width: .28rem;
                         @include height(0.28rem);
                         color: #fff;
@@ -87,6 +90,7 @@ $item-border-color: #d9d9d9;
             }
         }
         &-arrow:after{
+            @extend .iconfont;
             @extend .icon-right:before;
         }
     }

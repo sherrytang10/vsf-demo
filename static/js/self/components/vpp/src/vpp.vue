@@ -5,7 +5,8 @@
 
         </sf-navbar>
         <transition :name="transitionName">
-            <router-view class="child-view"></router-view>
+            <router-view class="child-view">
+            </router-view>
         </transition>
     </div>
 </template>
@@ -67,7 +68,7 @@
         position: relative;
         transition: all .4s cubic-bezier(.55,0,.1,1);
         background-color: #fff;
-        width: 100%;
+        /*width: 100%;*/
         box-sizing: border-box;
     }
     .slide-left-enter, .slide-right-leave-active {
