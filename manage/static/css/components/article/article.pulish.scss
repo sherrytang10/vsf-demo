@@ -1,6 +1,6 @@
 @import '../../mixin.scss';
 .form-box{
-    padding: 24px;
+    padding: 14px 24px;
     max-width: 780px;
     border-radius: 4px;
     border: 1px solid #eaeefb;
@@ -12,20 +12,18 @@
     &-picture{
         display: block;
         position: relative;
-        min-height: 192px;
-        line-height: 192px;
-        background: #f7f8f9;
+        min-height: 180px;
+        // background: #f7f8f9;
         color: #808080;
-        .upload-input{
-            position: absolute;
-            display: block;
-            top: 0;
-            left: 0;
-            height: 100%;
+        &-upload{
             width: 100%;
-            opacity: 0;
-            cursor: pointer;
-            z-index: 2;
+            @include box-sizing;
+            .el-upload{
+                width: 100%;
+                .el-upload-dragger{
+                    width: 100%;
+                }
+            }
         }
     }
     &-input{
@@ -71,6 +69,8 @@
         &-item{
             display: inline-block;
             padding: 8px 12px;
+            height: 15px;
+            line-height: 15px;
             margin: 5px;
             min-width: 40px;
             text-align: center;

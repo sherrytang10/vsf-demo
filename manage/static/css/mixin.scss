@@ -17,6 +17,11 @@
         background-color: $color * $opacity;
     }
 }
+@mixin box-sizing($type: border-box) {
+    box-sizing: $type;
+    -webkit-box-sizing: $type;
+}
+
 // 按下去背景颜色 + 字体
 @mixin  tap-color($color:#111, $bgColor: #fff, $opacity: .9){
     @include tap-bg-color($bgColor, $opacity);
