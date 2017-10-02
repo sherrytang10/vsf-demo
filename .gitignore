@@ -3,3 +3,5 @@ code2
 test2
 .DS_Store
 dist
+*/node_modules
+*/dist
