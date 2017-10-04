@@ -12,15 +12,22 @@
         </el-form-item>
     </el-form>
     <div class="table-box">
-        <el-table :data="userList" stripe border style="width: 100%">
-            <el-table-column prop="email" label="邮箱" width="180"></el-table-column>
+        <el-table :data="userList" stripe border style="width: 100%" max-height="20px">
+            <el-table-column prop="email" label="邮箱"></el-table-column>
             <el-table-column prop="userName" label="用户名"></el-table-column>
             <el-table-column prop="nickName" label="昵称"></el-table-column>
             <el-table-column prop="phone" label="联系方式"></el-table-column>
             <el-table-column prop="juejin" label="掘金"></el-table-column>
             <el-table-column prop="zhihu" label="知乎"></el-table-column>
             <el-table-column prop="github" label="GitHub"></el-table-column>
-            <el-table-column prop="jianshu" label="简书"></el-table-column>
+            <el-table-column label="操作" width="80">
+                <template scope="scope">
+                <el-button
+                  size="small"
+                  type="danger"
+                  @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+              </template>
+            </el-table-column>
         </el-table>
     </div>
 </div>
@@ -47,6 +54,9 @@ export default {
             this.$.get(HttpUrl.findUserAll).then( res => {
                 this.userList = res.results;
             });
+        },
+        handleEdit(){
+
         }
     }
 }
