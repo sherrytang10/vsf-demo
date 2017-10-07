@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export default {
     //核心部分，在我们使用Vue.use()时，自动调用的是install
     install(Vue, Message){
@@ -11,18 +10,19 @@ export default {
                 console.log(response)
                 if(response.status===200 || response.status===201 || response.status === 304) {
                     if(res.status != 1) {
-                        Message.alert(res.errmsg, '系统异常', {
-                            confirmButtonText: '确定'
-                        });
-                        // return new Promise( () => {});
+                        // Element.MessageBox.alert(res.errmsg, '系统异常', {
+                        //     confirmButtonText: '确定'
+                        // });
+                        alert(res.errmsg)
                         return Promise.reject(res);
                     } else {
                         return res;
                     }
                 } else {
-                    Message.alert(res.errmsg, `系统异常${res.status}`, {
+                    alert(res.errmsg)
+                    /*Element.MessageBox.alert(res.errmsg, `系统异常${res.status}`, {
                             confirmButtonText: '确定'
-                        });
+                        });*/
                 }
             },
             ({response:{status, statusText, data}}) => {

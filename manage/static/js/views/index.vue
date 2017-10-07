@@ -3,45 +3,30 @@
         <header class="headband"></header>
         <el-row class="main">
             <el-col :span="4" class="left">
-                <el-menu default-active="2"  class="el-menu-vertical-demo" :router="true" >
-                    <template v-for="item in menuList" :key="item.id">
-                        <template slot="title" v-if="item.path">
-                            <el-menu-item :index="item.path">
-                                <i class="el-icon-setting"></i>
+                <el-menu :router="true" >
+                    <template v-for="item in menuList">
+                        <el-submenu :index="item.id + ''" v-if="item.path == '/'">
+                            <template slot="title">
+                                <i class="el-icon-message"></i>
                                 {{item.name}}
-                            </el-menu-item>
-                        </template>
+                            </template>
+                            <el-menu-item-group v-if="item.children && item.children.length > 0">
+                                <el-menu-item v-for="citem in item.children" :index="citem.path">
+                                    {{citem.name}}
+                                </el-menu-item>
+                            </el-menu-item-group>
+                        </el-submenu>
+                        <el-menu-item :index="item.path" v-else>
+                            <i class="el-icon-setting"></i>
+                            {{item.name}}
+                        </el-menu-item>
                     </template>
-                    <!-- <el-submenu index="1">
-                        <template slot="title"> <i class="el-icon-message"></i>
-                            用户中心
-                        </template>
-                        <el-menu-item-group>
-                            <el-menu-item index="/userList">
-                                用户管理
-                            </el-menu-item>
-                            <el-menu-item index="/userSave">
-                                用户添加
-                            </el-menu-item>
-                        </el-menu-item-group>
-                    </el-submenu>
-                    <el-submenu index="2">
-                        <template slot="title"> <i class="el-icon-message"></i>
-                            文章中心
-                        </template>
-                        <el-menu-item-group>
-                            <el-menu-item index="/articleList">
-                                文章管理
-                            </el-menu-item>
-                            <el-menu-item index="/articlePulish">
-
-                            </el-menu-item>
-                        </el-menu-item-group>
-                    </el-submenu>
-                    <el-menu-item index="3">
+                </el-menu>
+                <el-menu :router="false">
+                    <el-menu-item index="quitLogin" @click="quitLogin">
                         <i class="el-icon-setting"></i>
                         退出
-                    </el-menu-item> -->
+                    </el-menu-item>
                 </el-menu>
             </el-col>
             <el-col  :span="20">
@@ -57,11 +42,14 @@
 <script>
 const HttpUrl = {
     findMenuList: '/restapi/user/menuList',
+    quitLogin: '/restapi/user/quitLogin',
 }
 export default {
     name: 'manage-index',
     data() {
-        return {}
+        return {
+            menuList:[]
+        }
     },
     created(){
         this.loadMenuList();
@@ -71,6 +59,15 @@ export default {
             this.$.get(HttpUrl.findMenuList).then( res => {
                 this.menuList = res.results;
             });
+        },
+        quitLogin(){
+
+            // this.$.get(HttpUrl.quitLogin).then( res => {
+                // this.$router.push({
+                // path:'/login',
+                // query:{'redirect': this.$route.fullPath}, // fullPath当前路由
+                // });
+            // });
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <el-form class="form-box article"  label-width="60px">
+        <el-form class="form-box article"  label-width="80px">
             <el-form-item label="标题:">
                 <el-input v-model="article.title"  class="width50" placeholder="请输入标题"></el-input>
             </el-form-item>
@@ -17,7 +17,7 @@
             <el-form-item label="概要:">
                 <el-input type="textarea" v-model="article.docreader" placeholder="请输入概要"></el-input>
             </el-form-item>
-            <el-form-item label="概要:">
+            <el-form-item label="题图:">
                 <el-upload
                   class="article-picture-upload"
                   drag
@@ -33,6 +33,13 @@
             </el-form-item>
             <el-form-item label="正文:">
                 <vue-editor v-model="article.content" placeholder="请输入正文"></vue-editor>
+            </el-form-item>
+            <el-form-item label="发布时间:">
+                    <el-date-picker
+                      v-model="article.createTime"
+                      type="datetime"
+                      placeholder="选择日期时间">
+                    </el-date-picker>
             </el-form-item>
             <!-- <el-form-item class="article-input article-label">
                     <el-tag
@@ -67,7 +74,8 @@ export default {
                 picture: '',
                 docreader:'',
                 type: '',
-                labelId:[]
+                labelId:[],
+                createTime: ''
             },
             articleType:[{
                 id: 1,
