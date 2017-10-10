@@ -30,10 +30,14 @@ module.exports = {
         //     filename: "commons.min.js",
         //     minChunks: 2,
         // }),
-        // new webpack.DefinePlugin({
-        //     // 开发环境是不是生产
-        //     PRODUCTION: JSON.stringify(false),
-        // }),
+        new webpack.DefinePlugin({
+            // 开发环境是不是生产
+            PRODUCTION: JSON.stringify(false),
+            // VERSION: JSON.stringify("5fa3b9"),
+            // BROWSER_SUPPORTS_HTML5: true,
+            // TWO: "1+1",
+            // "typeof window": JSON.stringify("object")
+        }),
         new HtmlWebpackPlugin({  //根据模板插入css/js等生成最终HTML
             title: '测试',// 模板参数
             // msg: '这是一个测试参数的测试参数',// 模板参数
@@ -61,11 +65,15 @@ module.exports = {
                 query:{
                     // .babelrc 存在是   优先.babelrc
                     presets:['es2015'],
-                    // 解决编译打包后 $export is not a function  异常
-                    plugins: [['transform-runtime', {
+                    plugins: [
+                        // 解决编译打包后 $export is not a function  异常
+                        ['transform-runtime', {
                               helpers: false,
                               polyfill: false,
                               regenerator: true, }],
+
+                        // transform-object-rest-spread 对...结构的扩展。因为ES6只支持对数组的解构赋值，对对象是不支持的。
+                        'transform-object-rest-spread'
                     ]
                 }
             },{

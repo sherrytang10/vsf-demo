@@ -1,0 +1,28 @@
+@import "../variables.scss";
+@import "../mixin.scss";
+.#{$prefix}{
+    &-author{
+        padding: 10px;
+        img{
+            display: block;
+            margin: 15px auto 5px;
+            width: 120px;
+            height: 120px;
+            @include border;
+        }
+        &-name,
+        &-description{
+            display: block;
+            @include height(25px);
+            text-align: center;
+        }
+        &-name{
+            font-size: 16px;
+            font-weight: bold;
+            color: $ft-f5-color;
+        }
+        &-description{
+            color: $ft-f3-color;
+        }
+    }
+}
