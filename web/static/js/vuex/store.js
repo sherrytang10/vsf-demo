@@ -71,7 +71,7 @@ let store = new Vuex.Store({
     // PRODUCTION  webpack.config 中 new webpack.DefinePlugin定义
     plugins: !!PRODUCTION ? [createLogger()] : [],
     modules:{
-        authors: author
+        author
     },
     // 组件调用store.state.xxx
     state: {

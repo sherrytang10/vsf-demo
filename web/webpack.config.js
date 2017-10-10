@@ -62,7 +62,7 @@ module.exports = {
                 //include: '', //要处理的目录
                 exclude: /^node_modules$/,//排除不处理的目录
                 loader: 'babel-loader',
-                query:{
+                /*query:{
                     // .babelrc 存在是   优先.babelrc
                     presets:['es2015'],
                     plugins: [
@@ -75,7 +75,7 @@ module.exports = {
                         // transform-object-rest-spread 对...结构的扩展。因为ES6只支持对数组的解构赋值，对对象是不支持的。
                         'transform-object-rest-spread'
                     ]
-                }
+                }*/
             },{
                 test: /\.vue$/,
                 exclude: /^node_modules$/,//排除不处理的目录

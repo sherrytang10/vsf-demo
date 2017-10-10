@@ -3,10 +3,8 @@ const getters = {
 const actions = {
 };
 const mutations = {
-    setAuthorInfo( state, authorInfo){
-        console.log(authorInfo)
-        state.authorInfo = authorInfo;
-        console.log(state)
+    setArticleList( state, articleList){
+        state.articleList = articleList;
     }
 };
 
@@ -15,7 +13,7 @@ export default {
     // 命名空间  局部
     namespaced: true,
     state: {
-        authorInfo: {}
+        articleList: []
     },
     getters,
     actions,

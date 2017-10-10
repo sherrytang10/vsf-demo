@@ -15,6 +15,7 @@
     </div>
 </template>
 <script>
+    import {mapState, mapMutations} from 'vuex';
     import indexLeft from '../components/indexLeft.vue';
     import sfArticle from '../components/sfArticle.vue';
     export default {
@@ -23,8 +24,24 @@
             indexLeft,
             sfArticle
         },
-        data(){
-            return {
+        computed: {
+            ...mapState('author', {
+                authorInfo: state => state.authorInfo
+            })
+        },
+        methods:{
+            ...mapMutations('author',{
+                'setAuthorInfo': 'setAuthorInfo'
+            }),
+            getAuthorInfo(){
+                console.log('1')
+                 setTimeout( () => {
+                    let authorInfo = {
+                        name: '天冰',
+                        description: '天上冰,亮晶晶.'
+                    }
+                    this.setAuthorInfo(authorInfo);
+                }, 1000);
             }
         }
     }

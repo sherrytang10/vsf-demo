@@ -1,8 +1,8 @@
 <template>
     <div class="sf-author">
         <img src="../../../images/headimg.jpg">
-        <span class="sf-author-name">{this.authorInfo.name}</span>
-        <span class="sf-author-description">{this.authorInfo.description}</span>
+        <span class="sf-author-name">{{authorInfo.name}}</span>
+        <span class="sf-author-description">{{authorInfo.description}}</span>
     </div>
 </template>
 <script>
@@ -10,7 +10,7 @@
     export default{
         name: 'left-author',
         computed: {
-            ...mapState('authors', {
+            ...mapState('author', {
                 authorInfo: state => state.authorInfo
             })
         },
@@ -18,18 +18,17 @@
             this.getAuthorInfo()
         },
         methods:{
-            // ...mapMutations('authors',{
-            //     'setAuthorInfo': 'setAuthorInfo'
-            // }),
+            ...mapMutations('author',{
+                'setAuthorInfo': 'setAuthorInfo'
+            }),
             getAuthorInfo(){
+                console.log('1')
                  setTimeout( () => {
                     let authorInfo = {
                         name: '天冰',
                         description: '天上冰,亮晶晶.'
                     }
-                    console.log()
-                    this.$store.commit('setAuthorInfo', authorInfo);
-                    // this.setAuthorInfo('setAuthorInfo', authorInfo);
+                    this.setAuthorInfo(authorInfo);
                 }, 1000);
             }
         }
