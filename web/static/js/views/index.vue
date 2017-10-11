@@ -24,6 +24,9 @@
             indexLeft,
             sfArticle
         },
+        created(){
+            this.getArticleList();
+        },
         computed: {
             ...mapState('author', {
                 authorInfo: state => state.authorInfo
@@ -33,15 +36,11 @@
             ...mapMutations('author',{
                 'setAuthorInfo': 'setAuthorInfo'
             }),
-            getAuthorInfo(){
-                console.log('1')
-                 setTimeout( () => {
-                    let authorInfo = {
-                        name: '天冰',
-                        description: '天上冰,亮晶晶.'
-                    }
-                    this.setAuthorInfo(authorInfo);
-                }, 1000);
+            getArticleList(){
+                // http://manage.qualc.cn/restapi/article/findAl
+                this.$.get('http://localhost:7779/restapi/article/findAll').then( res => {
+                    console.log(res);
+                });
             }
         }
     }
