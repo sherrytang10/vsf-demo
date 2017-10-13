@@ -5,7 +5,7 @@
                 <el-input v-model="article.title"  class="width50" placeholder="请输入标题"></el-input>
             </el-form-item>
             <el-form-item label="分类:">
-                <el-select class="width50" v-model="article.type" placeholder="请选择分类">
+                <el-select class="width50" v-model="article.typeId" placeholder="请选择分类">
                     <el-option
                       v-for="item in articleType"
                       :key="item.id"
@@ -73,7 +73,7 @@ export default {
                 content: '',
                 picture: '',
                 docreader:'',
-                type: '',
+                typeId: '',
                 labelId:[],
                 createTime: ''
             },

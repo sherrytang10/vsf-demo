@@ -14,6 +14,7 @@
         <div class="table-box">
             <el-table :data="articleList" stripe border style="width: 100%" max-height="40px">
                 <el-table-column fixed prop="title" label="标题" width="200" show-overflow-tooltip></el-table-column>
+                <el-table-column prop="userName" label="作者"  width="140"></el-table-column>
                 <el-table-column prop="articleTypeName" label="类型"  width="140"></el-table-column>
                 <el-table-column prop="labelIds" label="标签" width="140" show-overflow-tooltip></el-table-column>
                 <el-table-column prop="createTime" label="创建时间" width="185"></el-table-column>
@@ -49,7 +50,7 @@
 </template>
 <script>
 const HttpUrl = {
-    findArticleAll: '/restapi/article/findAll',
+    findArticleAll: '/restapi/article/system/findAllRole',
     againPublishArticle: '/restapi/article/againPublishArticle'
 }
 export default {
