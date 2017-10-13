@@ -98,7 +98,8 @@ module.exports = {
                 loader: 'file-loader',
                 query: {
                     limit: 8192,
-                    name: '../images/[name].[hash:8].[ext]'
+                    // name: '../images/[name].[hash:8].[ext]'
+                    name: '../images/[name].[ext]'
                 }
             }
         ]

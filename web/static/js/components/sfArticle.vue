@@ -1,28 +1,51 @@
 <template>
-    <article class="sf-article">
-        <h2 class="sf-article-title">
-            <a href="#" title="三步实现滚动条触动css动画效果">
-            三步实现滚动条触动css动画效果
-            </a>
-        </h2>
-        <div class="sf-article-box">
-            <img src="../../images/js.png" alt="" class="sf-article-img">
-            <div class="sf-article-info">
-                <div class="sf-article-info-description">
-                    现在很多网站都有这种效果，我就整理了一下，分享出来。利用滚动条来实现动画效果，ScrollReveal.js 用于创建和管理元素进入可视区域时的动画效果，帮助你的网站增加吸引力
-                </div>
-                <div class="sf-article-info-meta">
-                    <span>发表于：2017-090-04</span>
-                    <span>分类：web前端</span>
-                    <span>阅读次数：222</span>
+    <div class="article">
+        <article class="sf-article" v-for="item in articleList" :key="item.id">
+            <h2 class="sf-article-title">
+                <a href="#" :title="item.title">
+                    {{item.title}}
+                </a>
+            </h2>
+            <div class="sf-article-box">
+                <img :src="item.picture || `/images/js.png`" alt="" class="sf-article-img">
+                <div class="sf-article-info">
+                    <div class="sf-article-info-description">
+                        {{item.docreader}}
+                    </div>
+                    <div class="sf-article-info-meta">
+                        <span>发表于：{{item.publishTime}}</span>
+                        <span>分类：{{item.type}}</span>
+                        <span>阅读次数：{{item.visitors}}</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </article>
+        </article>
+    </div>
 </template>
 <script>
+    import {mapState, mapMutations} from 'vuex';
     export default{
-        name: 'sf-article'
+        name: 'sf-article',
+        computed: {
+            ...mapState('article', {
+                articleList: state => state.articleList
+            })
+        },
+        created(){
+            this.getArticleList();
+        },
+        methods:{
+            ...mapMutations('article',{
+                'setArticleList': 'setArticleList'
+            }),
+            getArticleList(){
+                // http://manage.qualc.cn/restapi/article/findAl
+                this.$.get('/restapi/article/findAll').then( res => {
+                    // this.articleList = res.results;
+                    this.setArticleList(res.results);
+                });
+            }
+        }
     }
 </script>
 <style scoped  lang="scss" type="text/css">

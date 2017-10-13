@@ -7,9 +7,6 @@
             </div>
             <div class="sf-right">
                 <sf-article></sf-article>
-                <sf-article></sf-article>
-                <sf-article></sf-article>
-                <sf-article></sf-article>
             </div>
         </div>
     </div>
@@ -24,24 +21,16 @@
             indexLeft,
             sfArticle
         },
-        created(){
-            this.getArticleList();
-        },
         computed: {
-            ...mapState('author', {
-                authorInfo: state => state.authorInfo
-            })
+            // ...mapState('author', {
+            //     authorInfo: state => state.authorInfo
+            // })
         },
         methods:{
-            ...mapMutations('author',{
-                'setAuthorInfo': 'setAuthorInfo'
-            }),
-            getArticleList(){
-                // http://manage.qualc.cn/restapi/article/findAl
-                this.$.get('http://localhost:7779/restapi/article/findAll').then( res => {
-                    console.log(res);
-                });
-            }
+            // ...mapMutations('author',{
+            //     'setAuthorInfo': 'setAuthorInfo'
+            // }),
+
         }
     }
 </script>
