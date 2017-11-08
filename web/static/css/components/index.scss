@@ -1,22 +1,21 @@
 @import "../variables.scss";
 @import "../mixin.scss";
-.#{$prefix}{
-    &-headband{
+.#{$prefix} {
+    &-headband {
         height: 5px;
         background-color: $bg-header-color;
     }
-    &-main{
+    &-main {
         margin: 0 auto;
-        width: 940px;
+        width: 1140px;
     }
-    &-left{
-        float: left;
+    &-left {
         display: inline-block;
-        width: 210px;
+        width: 250px;
     }
-    &-right{
+    &-right {
         float: right;
-        width: 940 - 210 - 30px;
+        width: 1140 - 250 - 30px;
         background-color: $bg-main-color;
     }
 }

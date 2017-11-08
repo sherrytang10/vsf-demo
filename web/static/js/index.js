@@ -6,6 +6,7 @@ import routes from './router/route.js';
 import axios from 'axios';
 import '../css/layout.scss';
 
+import IndexVue from './views/index.vue';
 Vue.use(VueRouter);
 
 
@@ -21,43 +22,43 @@ axiosIns.defaults.baseURL = 'http://localhost:7779';
 axiosIns.defaults.headers.post['Content-Type'] = 'application/jsoned';
 
 // 子类的拦截器，对结果是否正常做出判断
-axiosIns.interceptors.response.use( res =>{
+axiosIns.interceptors.response.use(res => {
     // 对响应数据做点什么
     let data = res.data;
     let status = res.status;
-    if(status===200 || status === 304 || status === 201){
+    if (status === 200 || status === 304 || status === 201) {
         status = data.status;
-        if(status === 998){
+        if (status === 998) {
             app.$router.push({
-                path:'/login',
-                query:{'redirect':app.$route.fullPath},
+                path: '/login',
+                query: { 'redirect': app.$route.fullPath },
             });
-        } else if(status === 0) {
+        } else if (status === 0) {
             // app.$message.error(data.errmsg);
             console.log(data.errmsg);
             return Promise.reject(res);
         } else {
             return data;
         }
-    }else{
+    } else {
         return Promise.reject(res);
     }
-},  error => {
+}, error => {
     // 对响应错误做点什么
     return Promise.reject(error)
 });
 
-let ajaxMethod = ['get','post'];
+let ajaxMethod = ['get', 'post'];
 let api = {};
-ajaxMethod.forEach((method)=>{
-    api[method] = function(uri,data,config){
+ajaxMethod.forEach((method) => {
+    api[method] = function(uri, data, config) {
         // 对axios包装的一层
-        return new Promise(function(resolve,reject){
-            axiosIns[method](uri,data,config).then((json)=>{
+        return new Promise(function(resolve, reject) {
+            axiosIns[method](uri, data, config).then((json) => {
                 resolve(json);
-            }).catch((response)=>{
+            }).catch((response) => {
                 // 拦截器里reject都会走到这里
-                if(response.status===200 && response.data.status == 0){
+                if (response.status === 200 && response.data.status == 0) {
                     // app.$message(response.data.errmsg);
                     console.log(response.data.errmsg)
                 }
@@ -75,10 +76,11 @@ const router = new VueRouter({
 });
 
 
-
-
 const app = new Vue({
     el: '#app',
+    components: {
+        [IndexVue.name]: IndexVue
+    },
     router,
     store
 });

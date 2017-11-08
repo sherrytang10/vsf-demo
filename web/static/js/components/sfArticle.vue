@@ -1,6 +1,7 @@
 <template>
     <div class="article">
         <article class="sf-article" v-for="item in articleList" :key="item.id">
+            <router-link :to="`/articleinfo/${item.id}`">
             <h2 class="sf-article-title">
                 <a href="#" :title="item.title">
                     {{item.title}}
@@ -19,35 +20,36 @@
                     </div>
                 </div>
             </div>
+            </router-link>
         </article>
     </div>
 </template>
 <script>
-    import {mapState, mapMutations} from 'vuex';
-    export default{
-        name: 'sf-article',
-        computed: {
-            ...mapState('article', {
-                articleList: state => state.articleList
-            })
-        },
-        created(){
-            this.getArticleList();
-        },
-        methods:{
-            ...mapMutations('article',{
-                'setArticleList': 'setArticleList'
-            }),
-            getArticleList(){
-                // http://manage.qualc.cn/restapi/article/findAl
-                this.$.get('/restapi/article/findAll').then( res => {
-                    // this.articleList = res.results;
-                    this.setArticleList(res.results);
-                });
-            }
-        }
+import { mapState, mapMutations } from "vuex";
+export default {
+  name: "sf-article",
+  computed: {
+    ...mapState("article", {
+      articleList: state => state.articleList
+    })
+  },
+  created() {
+    this.getArticleList();
+  },
+  methods: {
+    ...mapMutations("article", {
+      setArticleList: "setArticleList"
+    }),
+    getArticleList() {
+      // http://manage.qualc.cn/restapi/article/findAl
+      this.$.get("/restapi/article/findAll").then(res => {
+        // this.articleList = res.results;
+        this.setArticleList(res.results);
+      });
     }
+  }
+};
 </script>
 <style scoped  lang="scss" type="text/css">
-    @import '../../css/components/article.scss';
+@import "../../css/components/article.scss";
 </style>

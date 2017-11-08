@@ -6,37 +6,36 @@
                 <index-left></index-left>
             </div>
             <div class="sf-right">
-                <sf-article></sf-article>
+                <router-view></router-view>
             </div>
         </div>
     </div>
 </template>
 <script>
-    import {mapState, mapMutations} from 'vuex';
-    import indexLeft from '../components/indexLeft.vue';
-    import sfArticle from '../components/sfArticle.vue';
-    export default {
-        name: 'home',
-        components:{
-            indexLeft,
-            sfArticle
-        },
-        computed: {
-            // ...mapState('author', {
-            //     authorInfo: state => state.authorInfo
-            // })
-        },
-        methods:{
-            // ...mapMutations('author',{
-            //     'setAuthorInfo': 'setAuthorInfo'
-            // }),
-
-        }
-    }
+import { mapState, mapMutations } from "vuex";
+import indexLeft from "../components/indexLeft.vue";
+import sfArticle from "../components/sfArticle.vue";
+export default {
+  name: "index-home",
+  components: {
+    indexLeft,
+    sfArticle
+  },
+  computed: {
+    // ...mapState('author', {
+    //     authorInfo: state => state.authorInfo
+    // })
+  },
+  methods: {
+    // ...mapMutations('author',{
+    //     'setAuthorInfo': 'setAuthorInfo'
+    // }),
+  }
+};
 </script>
 <style scoped  lang="scss" type="text/css">
-    @import '../../css/components/index.scss';
-    /* header{
+@import "../../css/components/index.scss";
+/* header{
         height: 5px;
         background: linear-gradient(to right, #ffa800, #ff6d25);
         background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffa800), color-stop(100%,#ff6d25));
