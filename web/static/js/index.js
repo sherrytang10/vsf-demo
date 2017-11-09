@@ -18,7 +18,7 @@ let axiosIns = axios.create({});
 // 设定子类的配置信息
 // axiosIns.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
 
-axiosIns.defaults.baseURL = 'http://localhost:7779';
+// axiosIns.defaults.baseURL = 'http://localhost:7779';
 axiosIns.defaults.headers.post['Content-Type'] = 'application/jsoned';
 
 // 子类的拦截器，对结果是否正常做出判断
