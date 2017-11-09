@@ -8,6 +8,7 @@ import mutations from './mutations.js';
 
 import author from './modules/author.js';
 import article from './modules/article.js';
+import articleinfo from './modules/articleinfo.js';
 
 Vue.use(Vuex);
 
@@ -18,18 +19,19 @@ let store = new Vuex.Store({
     // 很多插件不推荐在生产用 所以借助构建工具来处理Webpack 或 Browserify
     // PRODUCTION  webpack.config 中 new webpack.DefinePlugin定义
     plugins: !!PRODUCTION ? [createLogger()] : [],
-    modules:{
+    modules: {
         author,
-        article
+        article,
+        articleinfo
     },
     // 组件调用store.state.xxx
     state: {
         // $: Vue.prototype.$
     },
-    getters:{
+    getters: {
         ...getters,
     },
-    actions:{
+    actions: {
         ...actions
     },
     mutations

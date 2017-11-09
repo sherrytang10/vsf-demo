@@ -2,45 +2,53 @@
 @import "../mixin.scss";
 .#{$prefix} {
     &-article {
+        position: relative;
         padding: 20px 40px 0;
         @include border-bottom;
         &-title {
-            font-size: 20px;
+            width: 80%;
+            font-size: 24px;
+            word-break: break-word;
+            font-weight: 400;
+            @include text-clamp(1);
             // @include height(40px);
         }
         &-box {
             position: relative;
+            margin-left: 160px;
             padding: 10px 0;
-            height: 140px;
+            height: 160px;
         }
         &-img {
             position: absolute;
-            top: 10px;
-            left: 0;
-            width: 120px;
-            height: 120px;
+            top: 30px;
+            // left: 40px;
+            width: 140px;
+            height: 140px;
             @include border;
         }
         &-info {
             float: left;
-            margin-left: 140px;
-            height: 120px;
-            &-description {
-                height: 90px;
-                overflow: hidden;
-            }
-            &-meta {
-                font-size: 12px;
-                color: $ft-f3-color;
-                span {
-                    &:after {
-                        content: '|';
-                        display: inline-block;
-                        margin: 0 5px;
-                    }
-                    &:last-child:after {
-                        content: '';
-                    }
+            // margin-left: 160px;
+            height: 140px;
+        }
+        &-description {
+            margin: 6px 0;
+            height: 80px;
+            // @include text-clamp(4);
+            overflow: hidden;
+        }
+        &-meta {
+            font-size: 12px;
+            color: $ft-f3-color;
+            span {
+                &:after {
+                    content: '|';
+                    display: inline-block;
+                    margin: 0 5px;
+                }
+                &:last-child:after {
+                    content: '';
                 }
             }
         }

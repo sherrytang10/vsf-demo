@@ -2,20 +2,20 @@
     <div class="article">
         <article class="sf-article" v-for="item in articleList" :key="item.id">
             <router-link :to="`/articleinfo/${item.id}`">
-            <h2 class="sf-article-title">
-                <a href="#" :title="item.title">
-                    {{item.title}}
-                </a>
-            </h2>
-            <div class="sf-article-box">
                 <img :src="item.picture || `/images/js.png`" alt="" class="sf-article-img">
+            <div class="sf-article-box">
+                <h1 class="sf-article-title">
+                    <a href="#" :title="item.title">
+                        {{item.title}}
+                    </a>
+                </h1>
                 <div class="sf-article-info">
-                    <div class="sf-article-info-description">
+                    <div class="sf-article-description">
                         {{item.docreader}}
                     </div>
-                    <div class="sf-article-info-meta">
+                    <div class="sf-article-meta">
                         <span>发表于：{{item.publishTime}}</span>
-                        <span>分类：{{item.type}}</span>
+                        <span>分类：{{item.articleTypeName}}</span>
                         <span>阅读次数：{{item.visitors}}</span>
                     </div>
                 </div>

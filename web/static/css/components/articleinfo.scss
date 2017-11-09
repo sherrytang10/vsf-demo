@@ -1,0 +1,41 @@
+@import "../variables.scss";
+@import "../mixin.scss";
+.#{$prefix} {
+    &-articleinfo {
+        position: relative;
+        padding: 40px;
+        @include border-bottom;
+        &-title,
+        &-meta {
+            margin: 20px auto 0;
+            text-align: center;
+        }
+        &-title {
+            font-size: 24px;
+            word-break: break-word;
+            font-weight: 400;
+            // @include text-clamp(1);
+            // @include height(40px);
+        }
+        &-content {
+            padding: 10px 40px;
+            margin-top: 48px;
+        }
+        &-meta {
+            margin-top: 20px;
+            font-size: 12px;
+            font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+            color: $ft-f3-color;
+            span {
+                &:after {
+                    content: '|';
+                    display: inline-block;
+                    margin: 0 5px;
+                }
+                &:last-child:after {
+                    content: '';
+                }
+            }
+        }
+    }
+}
