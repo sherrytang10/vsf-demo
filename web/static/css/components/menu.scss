@@ -1,18 +1,19 @@
 @import "../variables.scss";
 @import "../mixin.scss";
-.#{$prefix}{
-    &-navbar{
+.#{$prefix} {
+    &-navbar {
         display: block;
-        &-item{
+        &-item {
             display: block;
             padding: 0 15px 0 21px;
             @include height(40px);
             @include border-bottom;
+            cursor: pointer;
             color: $ft-f6-color;
         }
-        &-item.curr{
+        &-item.curr {
             background-color: $bg-curr-color;
-            &:after{
+            &:after {
                 content: ' ';
                 display: inline-block;
                 float: right;

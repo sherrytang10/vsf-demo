@@ -26,7 +26,7 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 import indexLeft from "../components/indexLeft.vue";
-import sfArticle from "../components/sfArticle.vue";
+import sfArticle from "../components/article/sfArticle.vue";
 export default {
   name: "index-home",
   components: {

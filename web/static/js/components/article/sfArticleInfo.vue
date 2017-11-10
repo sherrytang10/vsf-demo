@@ -1,14 +1,14 @@
 <template>
-    <div class="sf-articleinfo">
-        <h1 class="sf-articleinfo-title">
+    <div class="sf-article">
+        <h1 class="sf-article-title">
             {{articleinfo.title}}
         </h1>
-        <div class="sf-articleinfo-meta">
+        <div class="sf-article-meta">
             <span>发表于：{{articleinfo.publishTime}}</span>
             <span>分类：{{articleinfo.articleTypeName}}</span>
             <span>阅读次数：{{articleinfo.visitors}}</span>
         </div>
-        <div class="sf-articleinfo-content" v-html="articleinfo.content">
+        <div class="sf-article-content" v-html="articleinfo.content">
         </div>
     </div>
 </template>
@@ -24,7 +24,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("articleinfo", {
+    ...mapState("article", {
       articleinfo: state => state.articleinfo
     })
   },
@@ -32,7 +32,7 @@ export default {
     this.getArticleInfo();
   },
   methods: {
-    ...mapMutations("articleinfo", {
+    ...mapMutations("article", {
       setArticleInfo: "setArticleInfo"
     }),
     getArticleInfo() {
@@ -46,5 +46,5 @@ export default {
 };
 </script>
 <style scoped  lang="scss" type="text/css">
-@import "../../css/components/articleinfo.scss";
+@import "../../../css/components/article.scss";
 </style>

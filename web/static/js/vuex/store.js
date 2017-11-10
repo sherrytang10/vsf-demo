@@ -8,7 +8,6 @@ import mutations from './mutations.js';
 
 import author from './modules/author.js';
 import article from './modules/article.js';
-import articleinfo from './modules/articleinfo.js';
 
 Vue.use(Vuex);
 
@@ -21,8 +20,7 @@ let store = new Vuex.Store({
     plugins: !!PRODUCTION ? [createLogger()] : [],
     modules: {
         author,
-        article,
-        articleinfo
+        article
     },
     // 组件调用store.state.xxx
     state: {
