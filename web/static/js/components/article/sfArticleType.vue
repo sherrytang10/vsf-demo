@@ -1,7 +1,7 @@
 <template>
     <div class="articletype">
         <article class="sf-article sf-article-type-list" v-for="item in articleTypeList" :key="item.id">
-            <router-link :to="`/articlelist/${item.id}`">
+            <router-link :to="`/articlelist/${item.articleTypeId}`">
                 {{item.articleTypeName}} <span class="sf-article-type-num">({{item.num}})</span>
             </router-link>
         </article>
