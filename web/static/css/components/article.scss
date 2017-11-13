@@ -39,33 +39,31 @@
             position: relative;
             margin-left: 160px;
             padding: 10px 0;
-            height: 160px;
+            height: 140px;
         }
         &-img {
             position: absolute;
             top: 30px;
             // left: 40px;
-            width: 140px;
-            height: 140px;
+            width: 130px;
+            height: 130px;
             @include border;
         }
         &-info {
-            float: left;
-            // margin-left: 160px;
-            height: 140px;
         }
         &-description {
             margin: 6px 0;
-            height: 80px;
-            // @include text-clamp(4);
-            overflow: hidden;
+            height: 60px;
+            line-height: 20px;
+            text-indent: 2em;
+            @include text-clamp(3);
         }
         &-content {
             padding: 10px 40px;
             margin-top: 48px;
         }
         &-meta {
-            margin-top: 20px;
+            margin-top: 10px;
             font-size: 12px;
             font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
             color: $ft-f3-color;
