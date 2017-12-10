@@ -8,6 +8,7 @@
     &-main {
         margin: 0 auto;
         width: 1140px;
+        margin-bottom: 120px;
     }
     &-left {
         display: inline-block;
@@ -16,21 +17,22 @@
     &-right {
         float: right;
         padding-bottom: 10px;
+        min-height: 700px;
         width: 1140 - 250 - 30px;
         background-color: $bg-main-color;
     }
     &-footer {
-        height: 80px;
+        height: 60px;
         background-color: $bg-header-color;
         text-align: center;
         &-about {
-            padding-top: 10px;
+            padding-top: 5px;
             &-icons {
                 display: block;
                 width: 440px;
                 margin: 0 auto;
                 a {
-                    width: 30px;
+                    width: 20px;
                     margin: 0 20px;
                     display: inline-block;
                 }
@@ -38,8 +40,9 @@
         }
         &-credit {
             width: 100%;
-            height: 40px;
-            line-height: 40px;
+            height: 20px;
+            line-height: 20px;
+            margin-top: 3px;
             span {
                 margin: 0 5px;
             }

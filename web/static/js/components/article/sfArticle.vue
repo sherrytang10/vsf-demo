@@ -51,5 +51,5 @@ export default {
 };
 </script>
 <style scoped  lang="scss" type="text/css">
-@import "../../css/components/article.scss";
+@import "../../../css/components/article.scss";
 </style>

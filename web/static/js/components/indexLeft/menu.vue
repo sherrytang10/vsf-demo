@@ -1,18 +1,61 @@
 <template>
 <ul class="sf-navbar">
-    <li class="sf-navbar-item curr">首页</li>
-    <li class="sf-navbar-item">分类</li>
-    <li class="sf-navbar-item">归档</li>
-    <li class="sf-navbar-item">标签</li>
-    <li class="sf-navbar-item">作者</li>
-    <li class="sf-navbar-item">搜索</li>
+    <!-- <li class="sf-navbar-item curr" @click="tip()">首页</li>
+    <li class="sf-navbar-item" @click="tip()">分类</li>
+    <li class="sf-navbar-item" @click="tip()">归档</li>
+    <li class="sf-navbar-item" @click="tip()">标签</li>
+    <li class="sf-navbar-item" @click="tip()">作者</li>
+    <li class="sf-navbar-item" @click="tip()" >搜索</li> -->
+    <li v-for="(item,index) in menuList" :key="index" @click="tip(item.uri)"
+            :class="'sf-navbar-item ' + (ix == index ? 'curr': '')">
+        {{item.name}}
+    </li>
 </ul>
 </template>
 <script>
-    export default{
-        name: 'left-menu'
+export default {
+  name: "left-menu",
+  data() {
+    return {
+      ix: 0,
+      menuList: [
+        {
+          uri: "/",
+          name: "首页"
+        },
+        {
+          uri: "/articletype",
+          name: "分类"
+        },
+        // {
+        //   uri: "/",
+        //   name: "归档"
+        // },
+        {
+          uri: "/",
+          name: "标签"
+        },
+        {
+          uri: "/",
+          name: "作者"
+        },
+        {
+          uri: "/",
+          name: "搜索"
+        }
+      ] //["首页", "分类", "归档", "标签", "作者", "搜索"]
+    };
+  },
+  methods: {
+    tip(uri) {
+      if (!uri) {
+        alert("功能未实现");
+      }
+      this.$router.push(uri);
     }
+  }
+};
 </script>
 <style scoped  lang="scss" type="text/css">
-    @import '../../../css/components/menu.scss';
+@import "../../../css/components/menu.scss";
 </style>
