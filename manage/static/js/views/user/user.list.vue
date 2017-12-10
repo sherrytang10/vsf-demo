@@ -34,7 +34,7 @@
 </template>
 <script>
 const HttpUrl = {
-    findUserAll: '/restapi/user/findAll',
+    findUserAll: '/manage/user/findAll',
 }
 export default {
     data(){
