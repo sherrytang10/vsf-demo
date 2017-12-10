@@ -23,28 +23,28 @@
 </template>
 <script type="text/javascript">
     const HttpUrl = {
-        loginUrl: '/restapi/user/login'
+        loginUrl: '/manage/users/login'
     }
 export default {
     data () {
         return {
             email : '',
-            passWord : ''
+            password : ''
         }
     },
     methods : {
         check : function(event){
             //获取值
             var email = this.email;
-            var passWord = this.passWord;
-            if(email == '' || passWord == ''){
+            var password = this.passWord;
+            if(email == '' || password == ''){
                 this.$message({
                     message : '账号或密码为空！',
                     type : 'error'
                 })
                 return;
             }
-            this.$.post(HttpUrl.loginUrl, {email ,passWord }).then( res => {
+            this.$.post(HttpUrl.loginUrl, {email ,password }).then( res => {
                 this.$router.push('/index');
             });
         }

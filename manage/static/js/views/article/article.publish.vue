@@ -21,7 +21,7 @@
                 <el-upload
                   class="article-picture-upload"
                   drag
-                  action="/restapi/picture/upload"
+                  action="/manage/picture/upload"
                   list-type="picture"
                   :on-success="uploadSuccess"
                   :on-error="uploadError"
@@ -58,8 +58,8 @@
 </template>
 <script>
 const HttpUrl = {
-    findArticleTypeAll: '/restapi/articletype/findAll',
-    pulishArticle: '/restapi/article/pulish'
+    findArticleTypeAll: '/manage/articletype/findAll',
+    pulishArticle: '/manage/article/pulish'
 }
 import { VueEditor } from 'vue2-editor'
 export default {

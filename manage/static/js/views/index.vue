@@ -41,8 +41,8 @@
 </template>
 <script>
 const HttpUrl = {
-    findMenuList: '/restapi/user/menuList',
-    quitLogin: '/restapi/user/quitLogin',
+    findMenuList: '/manage/usersmenu/getMenuList',
+    quitLogin: '/manage/users/quitLogin',
 }
 export default {
     name: 'manage-index',

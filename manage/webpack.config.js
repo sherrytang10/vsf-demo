@@ -72,8 +72,8 @@ module.exports = {
             // msg: '这是一个测试参数的测试参数',// 模板参数
             filename: '../index.html', //生成的html存放路径，相对于 output -> path
             template: '../template/index.html', //html模板路径, 相对于 output -> path
-            inject: 'body',
-            hash: true
+            inject: 'body'
+            // ,hash: true
         }),
         new ExtractTextPlugin('../css/[name].css'),
     ],

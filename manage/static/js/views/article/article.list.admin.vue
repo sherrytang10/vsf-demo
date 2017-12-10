@@ -50,8 +50,8 @@
 </template>
 <script>
 const HttpUrl = {
-    findArticleAll: '/restapi/article/system/findAllRole',
-    againPublishArticle: '/restapi/article/againPublishArticle'
+    findArticleAll: '/manage/article/system/findAllRole',
+    againPublishArticle: '/manage/article/againPublishArticle'
 }
 export default {
     data(){

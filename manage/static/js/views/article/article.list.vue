@@ -49,8 +49,8 @@
 </template>
 <script>
 const HttpUrl = {
-    findArticleAll: '/restapi/article/findAll',
-    againPublishArticle: '/restapi/article/againPublishArticle'
+    findArticleAll: '/manage/article/findAll',
+    againPublishArticle: '/manage/article/againPublishArticle'
 }
 export default {
     data(){
