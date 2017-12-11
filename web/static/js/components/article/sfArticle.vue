@@ -2,15 +2,15 @@
     <div class="article">
         <article class="sf-article" v-for="item in articleList" :key="item.id">
             <router-link :to="`/articleinfo/${item.id}`">
-                <img :src="item.picture || `/images/js.png`" alt="" class="sf-article-img">
-            <div class="sf-article-box">
+                <img v-if="item.type == 1" :src="item.picture || `/images/js.png`" alt="" class="sf-article-img">
+            <div :class="'sf-article-box' + (item.type == 1 ?  ' mleft' : '')">
                 <h1 class="sf-article-title">
                     <a href="#" :title="item.title">
                         {{item.title}}
                     </a>
                 </h1>
                 <div class="sf-article-info">
-                    <div class="sf-article-description">
+                    <div class="sf-article-description"  v-if="item.type == 1" >
                         {{item.docreader}}
                     </div>
                     <div class="sf-article-meta">

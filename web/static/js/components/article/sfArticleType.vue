@@ -26,7 +26,7 @@ export default {
     getArticleList() {
       console.log("=======");
       // http://manage.qualc.cn/restapi/article/findAl
-      this.$.get("/restapi/article/findAllGroupType").then(res => {
+      this.$.get("/restapi/articletype/findAllGroupType").then(res => {
         // this.articleList = res.results;
         this.setArticleTypeList(res.results);
       });

@@ -22,7 +22,7 @@ export default {
       setAuthorInfo: "setAuthorInfo"
     }),
     getAuthorInfo() {
-      this.$.get("/restapi/user/findOne/1").then(res => {
+      this.$.get("/restapi/users/findOne/1").then(res => {
         this.setAuthorInfo(res.results || {});
       });
     }

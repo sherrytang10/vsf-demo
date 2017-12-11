@@ -37,9 +37,12 @@
         }
         &-box {
             position: relative;
-            margin-left: 160px;
+
             padding: 10px 0;
-            height: 140px;
+            // height: 140px;
+        }
+        &-box.mleft{
+             margin-left: 160px;
         }
         &-img {
             position: absolute;
