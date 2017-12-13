@@ -42,9 +42,10 @@ export default {
     }),
     getArticleList() {
       // http://manage.qualc.cn/restapi/article/findAl
-      this.$.get("/restapi/article/findAll").then(res => {
+      this.$.get("/restapi/article/findAll").then(results => {
         // this.articleList = res.results;
-        this.setArticleList(res.results);
+        console.log(results.articleList)
+        this.setArticleList(results.articleList);
       });
     }
   }

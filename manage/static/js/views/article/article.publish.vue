@@ -5,7 +5,7 @@
                 <el-input v-model="article.title"  class="width50" placeholder="请输入标题"></el-input>
             </el-form-item>
             <el-form-item label="分类:">
-                <el-select class="width50" v-model="article.typeId" placeholder="请选择分类">
+                <el-select class="width50" v-model="article.articleTypeId" placeholder="请选择分类">
                     <el-option
                       v-for="item in articleType"
                       :key="item.id"
@@ -17,7 +17,11 @@
             <el-form-item label="概要:">
                 <el-input type="textarea" v-model="article.docreader" placeholder="请输入概要"></el-input>
             </el-form-item>
-            <el-form-item label="题图:">
+            <el-form-item label="类型:">
+                <el-radio v-model="article.type" label="1">文章</el-radio>
+                <el-radio v-model="article.type" label="2">短记</el-radio>
+            </el-form-item>
+            <el-form-item label="题图:" ref="picture">
                 <el-upload
                   class="article-picture-upload"
                   drag
@@ -36,7 +40,7 @@
             </el-form-item>
             <el-form-item label="发布时间:">
                     <el-date-picker
-                      v-model="article.createTime"
+                      v-model="article.publishTime"
                       type="datetime"
                       placeholder="选择日期时间">
                     </el-date-picker>
@@ -59,7 +63,8 @@
 <script>
 const HttpUrl = {
     findArticleTypeAll: '/manage/articletype/findAll',
-    pulishArticle: '/manage/article/pulish'
+    pulishArticle: '/manage/article/saveOrUpdate',
+    findArticleInfo: '/manage/article/info/'
 }
 import { VueEditor } from 'vue2-editor'
 export default {
@@ -69,13 +74,15 @@ export default {
     data() {
       return {
             article: {
+                id: 0,
                 title:'',
                 content: '',
                 picture: '',
                 docreader:'',
-                typeId: '',
+                articleTypeId: '',
                 labelId:[],
-                createTime: ''
+                publishTime: '',
+                type: '1', //文章或短记
             },
             articleType:[{
                 id: 1,
@@ -97,7 +104,9 @@ export default {
         };
     },
     created(){
-        this.loadArticleType();
+        this.loadArticleType().then(()=>{
+            this.loadArticleInfo();
+        });
     },
     methods: {
         checkLabel({target}){
@@ -118,19 +127,37 @@ export default {
             });
         },
         loadArticleType(){
-            this.$.get(HttpUrl.findArticleTypeAll).then( res => {
-                this.articleType = res.results;
+            return this.$.get(HttpUrl.findArticleTypeAll).then( results => {
+                this.articleType = results;
             });
         },
+        loadArticleInfo(){
+            console.log(this.$route)
+            let {id} = this.$route.params;
+            if(id){
+                this.$.get(`${HttpUrl.findArticleInfo}${id}`).then( results => {
+                    this.article = results;
+                });
+            }
+        },
         saveArticle(){
-                this.$.post(HttpUrl.pulishArticle, this.article).then( res => {
-                    this.$alert(res.errmsg, '上传文章成功', {
+                this.$.post(HttpUrl.pulishArticle, this.article).then( errmsg => {
+                    this.$alert(errmsg, '上传文章成功', {
                         confirmButtonText: '确定',
                         callback: () => {
                             location.reload();
                         }
                     });
                 });
+        }
+    },
+    watch:{
+        'article.type'(curVal,oldVal){
+            if(curVal == 2) {
+                this.$refs.picture.$el.style.display = 'none';
+            } else {
+                this.$refs.picture.$el.style.display = 'block';
+            }
         }
     }
 }

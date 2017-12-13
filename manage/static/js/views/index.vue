@@ -56,8 +56,8 @@ export default {
     },
     methods:{
         loadMenuList(){
-            this.$.get(HttpUrl.findMenuList).then( res => {
-                this.menuList = res.results;
+            this.$.get(HttpUrl.findMenuList).then( results => {
+                this.menuList = results;
             });
         },
         quitLogin(){

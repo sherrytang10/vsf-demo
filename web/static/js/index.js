@@ -35,10 +35,9 @@ axiosIns.interceptors.response.use(res => {
             });
         } else if (status === 0) {
             // app.$message.error(data.errmsg);
-            console.log(data.errmsg);
             return Promise.reject(res);
         } else {
-            return data;
+            return data.results;
         }
     } else {
         return Promise.reject(res);

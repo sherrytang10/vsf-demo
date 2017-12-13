@@ -26,9 +26,9 @@ export default {
     getArticleList() {
       console.log("=======");
       // http://manage.qualc.cn/restapi/article/findAl
-      this.$.get("/restapi/articletype/findAllGroupType").then(res => {
+      this.$.get("/restapi/articletype/findAllGroupType").then(results => {
         // this.articleList = res.results;
-        this.setArticleTypeList(res.results);
+        this.setArticleTypeList(results);
       });
     }
   }

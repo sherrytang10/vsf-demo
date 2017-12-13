@@ -9,7 +9,7 @@
         </el-row>
         <el-row>
             <el-col :span="8">
-                <el-input id="passWord" v-model="passWord" type="password" placeholder="请输入密码">
+                <el-input id="password" v-model="password" type="password" placeholder="请输入密码">
                     <template slot="prepend">密码</template>
                 </el-input>
             </el-col>
@@ -36,7 +36,7 @@ export default {
         check : function(event){
             //获取值
             var email = this.email;
-            var password = this.passWord;
+            var password = this.password;
             if(email == '' || password == ''){
                 this.$message({
                     message : '账号或密码为空！',

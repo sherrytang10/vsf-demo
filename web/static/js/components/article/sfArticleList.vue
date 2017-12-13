@@ -37,10 +37,10 @@ export default {
     }),
     getArticleList() {
       this.$
-        .get(`/restapi/article/findAll?typeId=${this.$route.params.id}`)
-        .then(res => {
+        .get(`/restapi/article/findAll?articleTypeId=${this.$route.params.id}`)
+        .then(results => {
           // this.articleList = res.results;
-          this.setArticleList(res.results);
+          this.setArticleList(results.articleList);
         });
     }
   }

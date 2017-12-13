@@ -37,9 +37,9 @@ export default {
     }),
     getArticleInfo() {
       // http://manage.qualc.cn/restapi/article/findAl
-      this.$.get(`/restapi/article/info/${this.$route.params.id}`).then(res => {
+      this.$.get(`/restapi/article/info/${this.$route.params.id}`).then(results => {
         // this.articleList = res.results;
-        this.setArticleInfo(res.results);
+        this.setArticleInfo(results);
       });
     }
   }

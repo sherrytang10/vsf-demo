@@ -21,7 +21,7 @@ export default [{
         name: 'userSave',
         component: require('../views/user/user.add.vue'),
     }, {
-        path: '/articlePulish',
+        path: '/articlePulish/:id?',
         name: 'articlePulish',
         component: require('../views/article/article.publish.vue'),
     }, {
