@@ -8,11 +8,11 @@ default [{
     name: 'articleinfo',
     component: require('../components/article/sfArticleInfo.vue')
 }, {
-    path: '/articletype',
-    name: 'articletype',
-    component: require('../components/article/sfArticleType.vue')
+    path: '/articleclassify/:type',
+    name: 'articleclassify',
+    component: require('../components/article/sfArticleClassify.vue')
 }, {
-    path: '/articlelist/:id',
+    path: '/articlelist/:type/:id',
     name: 'articlelist',
     component: require('../components/article/sfArticleList.vue')
 }]

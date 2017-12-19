@@ -41,10 +41,7 @@ export default {
       setArticleList: "setArticleList"
     }),
     getArticleList() {
-      // http://manage.qualc.cn/restapi/article/findAl
       this.$.get("/restapi/article/findAll").then(results => {
-        // this.articleList = res.results;
-        console.log(results.articleList)
         this.setArticleList(results.articleList);
       });
     }

@@ -7,8 +7,8 @@ const mutations = {
     setArticleInfo(state, articleinfo) {
         state.articleinfo = articleinfo;
     },
-    setArticleTypeList(state, articleTypeList) {
-        state.articleTypeList = articleTypeList;
+    setArticleClassify(state, articleClassify) {
+        state.articleClassify = articleClassify;
     }
 };
 
@@ -18,7 +18,7 @@ export default {
     namespaced: true,
     state: {
         articleList: [],
-        articleTypeList: [],
+        articleClassify: [],
         articleinfo: {}
     },
     getters,
