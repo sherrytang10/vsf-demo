@@ -34,7 +34,7 @@
 </template>
 <script>
 const HttpUrl = {
-    findUserAll: '/manage/user/findAll',
+    findUserAll: '/manage/users/findAll',
 }
 export default {
     data(){
@@ -51,8 +51,8 @@ export default {
     },
     methods:{
         loadUserList(){
-            this.$.get(HttpUrl.findUserAll).then( res => {
-                this.userList = res.results;
+            this.$.get(HttpUrl.findUserAll).then( results => {
+                this.userList = results;
             });
         },
         handleEdit(){
