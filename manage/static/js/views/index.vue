@@ -11,7 +11,7 @@
                                 {{item.name}}
                             </template>
                             <el-menu-item-group v-if="item.children && item.children.length > 0">
-                                <el-menu-item v-for="citem in item.children" :index="citem.path">
+                                <el-menu-item v-for="citem in item.children" :index="citem.path" :key="citem">
                                     {{citem.name}}
                                 </el-menu-item>
                             </el-menu-item-group>

@@ -13,21 +13,14 @@ shell.rm('-rf', './dist/')
 shell.mkdir('-p', './dist/js/common')
 shell.cp('-R', './static/js/common/flexible_v2.js', './dist/js/common');
 
+
 module.exports = {
-    // devServer:{
-    //     publicPath: 'http://localhost:3000/', // 设置引用路径 如ttf等文件
-    //     contentBase: path.join(__dirname, "static"),
-    //     //内联模式
-    //     inline:true,
-    //     port: 3000,
-    //     historyApiFallback: true//不跳转
-    // },
-    // watch: true,
+    watch: true,
     context: path.resolve(__dirname + '/static/js/'),
     entry: {
         index: './index.js',
         vue:['vue', 'vue-router', 'vuex','axios'],
-        elementui: 'element-ui'
+        elementui:'element-ui'
     },
     output: {
         path: __dirname + '/dist/js',
@@ -69,10 +62,10 @@ module.exports = {
         //     filename: '[name].[hash].js',
         //     chunks: ['index', 'common']    // extract commonChunk  from index & common
         // }),
-        new webpack.optimize.CommonsChunkPlugin({name:['vue','elementui'],filename: '[name].js'}),
+        new webpack.optimize.CommonsChunkPlugin({name:['vue','elementui'],filename: '[name].[hash].js'}),
         new webpack.DefinePlugin({
          //    // 开发环境是不是生产
-            PRODUCTION: JSON.stringify(false),
+            PRODUCTION: JSON.stringify(true),
         }),
         new HtmlWebpackPlugin({  //根据模板插入css/js等生成最终HTML
             title: '测试',// 模板参数
@@ -83,7 +76,6 @@ module.exports = {
             // ,hash: true
         }),
         new ExtractTextPlugin('../css/[name].css'),
-        // new webpack.HotModuleReplacementPlugin()
     ],
     resolve: {
         extensions: ['.js', '.vue', '.css'],

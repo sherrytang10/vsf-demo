@@ -19,7 +19,7 @@
             <el-table-column prop="docreader" label="概述" width="220" show-overflow-tooltip></el-table-column>
             <el-table-column prop="disabledStr" label="状态" width="70" show-overflow-tooltip></el-table-column>
             <el-table-column fixed="right" label="操作" width="256">
-                <template scope="scope">
+                <template slot-scope="scope">
                     <el-button
                       size="small"
                       type="info"
