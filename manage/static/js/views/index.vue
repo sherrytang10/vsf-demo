@@ -11,7 +11,7 @@
                                 {{item.name}}
                             </template>
                             <el-menu-item-group v-if="item.children && item.children.length > 0">
-                                <el-menu-item v-for="citem in item.children" :index="citem.path" :key="citem">
+                                <el-menu-item v-for="citem in item.children" :index="citem.path" :key="citem.id">
                                     {{citem.name}}
                                 </el-menu-item>
                             </el-menu-item-group>
@@ -48,11 +48,50 @@ export default {
     name: 'manage-index',
     data() {
         return {
-            menuList:[]
+            // menuList:[]
+            menuList:[{
+                id: 1,
+                name: '用户中心',
+                path: '/',
+                parentId: 0,
+                key: 'users',
+                children:[{
+                    id: 2,
+                    name: '用户管理',
+                    path: '/userList',
+                    parentId: 1,
+                    key: 'users'
+                },{
+                    id: 3,
+                    name: '用户添加',
+                    path: '/userSave',
+                    parentId: 1,
+                    key: 'users'
+                }]
+            },{
+                id: 4,
+                name: '文章中心',
+                path: '/',
+                parentId: 0,
+                key: 'article',
+                children:[{
+                    id: 5,
+                    name: '文章管理',
+                    path: '/articleList',
+                    parentId: 4,
+                    key: 'article'
+                },{
+                    id: 6,
+                    name: '文章发布',
+                    path: '/articlePulish',
+                    parentId: 4,
+                    key: 'article'
+                }]
+            }]
         }
     },
     created(){
-        this.loadMenuList();
+        // this.loadMenuList();
     },
     methods:{
         loadMenuList(){

@@ -10,7 +10,7 @@
         </el-form-item>
     </el-form>
     <div class="table-box">
-        <el-table :data="articleList" stripe border max-height="40px">
+        <el-table :data="articleList" stripe border >
             <el-table-column fixed prop="title" label="标题" width="150" show-overflow-tooltip></el-table-column>
             <el-table-column prop="articleTypeName" label="分类"  width="120"></el-table-column>
             <el-table-column prop="labelIds" label="标签" width="80" show-overflow-tooltip></el-table-column>
@@ -18,19 +18,19 @@
             <el-table-column prop="publishTime" label="发布时间" width="185"></el-table-column>
             <el-table-column prop="docreader" label="概述" width="220" show-overflow-tooltip></el-table-column>
             <el-table-column prop="disabledStr" label="状态" width="70" show-overflow-tooltip></el-table-column>
-            <el-table-column fixed="right" label="操作" width="256">
+            <el-table-column fixed="right" label="操作" width="218">
                 <template slot-scope="scope">
                     <el-button
                       size="small"
-                      type="info"
+                      type="primary"
                       @click="handleEdit(scope.row)">详情</el-button>
-                    <el-button
+                    <el-button v-if="scope.row.disabled == 0"
                       size="small"
                       type="info"
                       @click="handlePublish(scope.row)">发布</el-button>
-                    <el-button
+                    <el-button v-if="scope.row.disabled == 1"
                       size="small"
-                      type="info"
+                      type="primary"
                       @click="handleDisabled(scope.row)">下线</el-button>
                     <el-button
                       size="small"
@@ -43,7 +43,7 @@
     <div class="table-box" style="float: right">
         <el-pagination
               @size-change="handleSizeChange"
-              @current-change="handleragination"
+              @current-change="handlerAgination"
               :current-page="formInline.currPage"
               :page-sizes="[20, 50, 100, 200]"
               :page-size="formInline.currPage"
@@ -83,41 +83,42 @@ export default {
         },
         // 发布
         handlePublish(item){
-            this.$.get(`${HttpUrl.publishArticle}?id=${item.id}`).then( results => {
-                this.$alert(results, {
-                        confirmButtonText: '确定',
-                        callback: () => {
-                            location.reload();
-                        }
-                    });
-                this.$confirm('发布文章', '提示', {
-                      confirmButtonText: '确定',
-                      cancelButtonText: '取消',
-                      type: 'warning'
-                }).then(() => {
-                    location.reload();
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '已取消发布'
-                    });
-                });
-            });
-        },
-        handleDisabled(item) {
-            this.$.get(`${HttpUrl.disabledArticle}?id=${item.id}`).then( results => {
-                this.$message(results)
-            });
-        },
-        handleDelete(item){
-            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+            this.$confirm('发布文章', '提示', {
                   confirmButtonText: '确定',
                   cancelButtonText: '取消',
                   type: 'warning'
             }).then(() => {
-                this.$.get(`${HttpUrl.deleteArticle}?id=${item.id}`).then( results => {
-                    this.$message(results)
-                    location.reload();
+                this.$.get(`${HttpUrl.publishArticle}?id=${item.id}`).then( results => {
+                    this.$message({
+                        type: 'success',
+                        message: '操作成功',
+                        duration: 1500,
+                        onClose: () => {
+                            this.loadArticleList();
+                        }
+                    });
+                });
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '已取消发布'
+                });
+            });
+        },
+        handleDisabled(item) {
+            this.$.get(`${HttpUrl.disabledArticle}?id=${item.id}`).then( () => {
+                this.$message('操作成功')
+            });
+        },
+        handleDelete(item){
+            this.$confirm('此操作将永久删除该文章, 是否继续?', '提示', {
+                  confirmButtonText: '确定',
+                  cancelButtonText: '取消',
+                  type: 'warning'
+            }).then(() => {
+                this.$.get(`${HttpUrl.deleteArticle}?id=${item.id}`).then( () => {
+                    this.$message('操作成功')
+                    this.loadArticleList();
                 });
             }).catch(() => {
                 this.$message({
@@ -127,9 +128,9 @@ export default {
             });
         },
         handleEdit(item){
-          this.$router.push(`/articlePulish/${row.id}`);
+          this.$router.push(`/articlePulish/${item.id}`);
         },
-        handleragination(currentPage){
+        handlerAgination(currentPage){
             if(this.formInline.currPage != currentPage){
                 this.formInline.currPage = currentPage;
                 this.loadArticleList();

@@ -134,6 +134,7 @@ export default {
         loadArticleInfo(){
             console.log(this.$route)
             let {id} = this.$route.params;
+            console.log(loadArticleInfo)
             if(id){
                 this.$.get(`${HttpUrl.findArticleInfo}${id}`).then( results => {
                     this.article = results;

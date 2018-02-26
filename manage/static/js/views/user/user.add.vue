@@ -11,7 +11,7 @@
             <el-input class="width50"  type="password" v-model="userInfo.password"placeholder="请输入用户密码"></el-input>
         </el-form-item>
 
-        <el-form-item label="密码" prop="roleId">
+        <el-form-item label="角色" prop="roleId">
             <el-select class="width50" v-model="userInfo.roleId" placeholder="请选择">
                 <el-option
                   v-for="item in usersGroup"
@@ -40,9 +40,12 @@
             email: '',
             nickName: '',
             password: '123456',
-            roleId: null
+            roleId: 1
         },
-        usersGroup:[],
+        usersGroup:[{
+          id: 1,
+          name: '管理员'
+        }],
         rules: {
             email: [
                 { required: true, message: '请输入电子邮箱', trigger: 'blur' }

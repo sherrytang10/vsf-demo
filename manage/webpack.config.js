@@ -22,7 +22,7 @@ module.exports = {
     //     port: 3000,
     //     historyApiFallback: true//不跳转
     // },
-    // watch: true,
+    watch: true,
     context: path.resolve(__dirname + '/static/js/'),
     entry: {
         index: './index.js',
