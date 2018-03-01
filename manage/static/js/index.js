@@ -30,12 +30,18 @@ axiosIns.interceptors.response.use( res =>{
     let status = res.status;
     if(status===200 || status === 304 || status === 201){
         status = data.status;
+        console.log('~~~~====')
+        console.log(status)
         if(status === 998){
             app.$router.push({
                 path:'/login',
                 query:{'redirect':app.$route.fullPath},
             });
-        } else if(status === 0) {
+        } else if(status === 997){
+            console
+            app.$message.error(data.errmsg);
+            return Promise.reject(res);
+        }else if(status === 0) {
             // app.$alert(data.errmsg, '系统异常', {
             //     confirmButtonText: '确定'
             // });
@@ -58,12 +64,15 @@ ajaxMethod.forEach((method)=>{
     api[method] = function(uri,data,config){
         // 对axios包装的一层
         return new Promise(function(resolve,reject){
+            if(!config || config.cache != false) {
+                uri += uri.indexOf('?')>0? '&' : '?' + '_r='+ Date.now();
+            }
             axiosIns[method](uri,data,config).then((json)=>{
                 resolve(json);
             }).catch((response)=>{
                 // 拦截器里reject都会走到这里
                 if(response.status===200 && response.data.status == 0){
-                    app.$message(response.data.errmsg);
+                    // app.$message(response.data.errmsg);
                 }
             })
         })

@@ -3,6 +3,10 @@ default [{
     path: '/',
     name: 'article',
     component: require('../components/article/sfArticle.vue')
+},{
+    path: '/article/:type?',
+    name: 'article',
+    component: require('../components/article/sfArticle.vue')
 }, {
     path: '/articleinfo/:id',
     name: 'articleinfo',

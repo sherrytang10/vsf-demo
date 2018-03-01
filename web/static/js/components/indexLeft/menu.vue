@@ -19,21 +19,25 @@ export default {
       ix: 0,
       menuList: [
         {
-          uri: "/",
-          name: "首页"
+          uri: "/article/1",
+          name: "文章"
+        },
+        {
+          uri: "/article/2",
+          name: "随记"
         },
         {
           uri: "/articleclassify/type",
-          name: "分类"
+          name: "类型"
         },
         // {
         //   uri: "/",
         //   name: "归档"
         // },
-        {
-          uri: "/articleclassify/lable",
-          name: "标签"
-        },
+        // {
+        //   uri: "/articleclassify/lable",
+        //   name: "标签"
+        // },
         {
           uri: "",
           name: "作者"

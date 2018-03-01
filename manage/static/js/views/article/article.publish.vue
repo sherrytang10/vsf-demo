@@ -40,7 +40,7 @@
             </el-form-item>
             <el-form-item label="发布时间:">
                     <el-date-picker
-                      v-model="article.publishTime"
+                      v-model="article.publishDate"
                       type="datetime"
                       placeholder="选择日期时间">
                     </el-date-picker>
@@ -80,8 +80,8 @@ export default {
                 picture: '',
                 docreader:'',
                 articleTypeId: '',
-                labelId:[],
-                publishTime: '',
+                // labelId:[],
+                publishDate: '',
                 type: '1', //文章或短记
             },
             articleType:[{
@@ -134,7 +134,6 @@ export default {
         loadArticleInfo(){
             console.log(this.$route)
             let {id} = this.$route.params;
-            console.log(loadArticleInfo)
             if(id){
                 this.$.get(`${HttpUrl.findArticleInfo}${id}`).then( results => {
                     this.article = results;

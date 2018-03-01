@@ -15,7 +15,7 @@
         <el-table :data="userList" stripe border>
             <el-table-column prop="nickName" label="昵称"></el-table-column>
             <el-table-column prop="userName" label="用户名"></el-table-column>
-            <el-table-column prop="role" label="角色"></el-table-column>
+            <el-table-column prop="roleName" label="角色"></el-table-column>
             <el-table-column prop="email" label="邮箱"></el-table-column>
             <el-table-column prop="phone" label="联系方式"></el-table-column>
             <el-table-column prop="motto" label="座右铭"></el-table-column>

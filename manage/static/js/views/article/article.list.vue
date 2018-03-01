@@ -13,11 +13,11 @@
         <el-table :data="articleList" stripe border >
             <el-table-column fixed prop="title" label="标题" width="150" show-overflow-tooltip></el-table-column>
             <el-table-column prop="articleTypeName" label="分类"  width="120"></el-table-column>
-            <el-table-column prop="labelIds" label="标签" width="80" show-overflow-tooltip></el-table-column>
-            <el-table-column prop="typeName" label="类型" width="70" show-overflow-tooltip></el-table-column>
-            <el-table-column prop="publishTime" label="发布时间" width="185"></el-table-column>
+            <el-table-column prop="type" :formatter="typeStr" label="类型" width="80" show-overflow-tooltip></el-table-column>
+            <!-- <el-table-column prop="labelIds" label="标签" width="80" show-overflow-tooltip></el-table-column> -->
+            <el-table-column prop="publishDate" label="发布时间" width="185"></el-table-column>
             <el-table-column prop="docreader" label="概述" width="220" show-overflow-tooltip></el-table-column>
-            <el-table-column prop="disabledStr" label="状态" width="70" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="disabled" label="状态" :formatter="disabledStr" width="70"></el-table-column>
             <el-table-column fixed="right" label="操作" width="218">
                 <template slot-scope="scope">
                     <el-button
@@ -142,6 +142,12 @@ export default {
                 this.formInline.currPage = 1;
                 this.loadArticleList();
             }
+        },
+        disabledStr(row, column, cellValue){
+            return row.disabled == 1 ? '发布中' : '已下线';
+        },
+        typeStr({type}){
+            return type == 1 ? '文章': type == 2 ? '随记' :'';
         }
     }
 }

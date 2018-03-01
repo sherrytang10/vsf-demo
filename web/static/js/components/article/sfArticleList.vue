@@ -3,7 +3,7 @@
         <template v-if="articleList && articleList.length > 0">
             <article class="sf-article sf-article-list-item" v-for="item in articleList" :key="item.id">
                 <router-link :to="`/articleinfo/${item.id}`">
-                    {{item.publishTime | formatDate}} | <span class="sf-article-smalltitle">{{item.title}}</span>
+                    {{item.publishDate | formatDate}} | <span class="sf-article-smalltitle">{{item.title}}</span>
                 </router-link>
             </article>
         </template>
@@ -25,6 +25,8 @@ export default {
   },
   created() {
     this.getArticleList();
+  },
+  updated(){
   },
   filters: {
     formatDate: function(time) {
