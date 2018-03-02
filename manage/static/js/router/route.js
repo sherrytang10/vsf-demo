@@ -32,5 +32,9 @@ export default [{
         path: '/articleListAdmin',
         name: 'articleListAdmin',
         component: require('../views/article/article.list.admin.vue'),
+    },{
+        path: 'articleTypeList',
+        name: 'articleTypeList',
+        component: require('../views/article/article.type.list.vue'),
     }]
 }]

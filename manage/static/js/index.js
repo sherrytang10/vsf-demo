@@ -30,8 +30,6 @@ axiosIns.interceptors.response.use( res =>{
     let status = res.status;
     if(status===200 || status === 304 || status === 201){
         status = data.status;
-        console.log('~~~~====')
-        console.log(status)
         if(status === 998){
             app.$router.push({
                 path:'/login',

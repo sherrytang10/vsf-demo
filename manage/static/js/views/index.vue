@@ -86,6 +86,12 @@ export default {
                     path: '/articlePulish',
                     parentId: 4,
                     key: 'article'
+                },{
+                    id: 5,
+                    name: '类型管理',
+                    path: '/articleTypeList',
+                    parentId: 4,
+                    key: 'article'
                 }]
             }]
         }

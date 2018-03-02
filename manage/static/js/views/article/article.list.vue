@@ -1,5 +1,9 @@
 <template>
     <div class="container">
+        <el-form :inline="true" class="form-box mb30">
+            <el-button type="primary" size="small" @click="typeInfoVisible = true">新增类型</el-button>
+            <el-button type="primary" size="small" @click="typeListVisible = true">查看类型</el-button>
+        </el-form>
         <el-form :inline="true" :model="formInline" class="form-box">
             <el-form-item label="昵称">
                 <el-input v-model="formInline.nickName" placeholder="昵称"></el-input>
@@ -14,28 +18,31 @@
             <el-table-column fixed prop="title" label="标题" width="150" show-overflow-tooltip></el-table-column>
             <el-table-column prop="articleTypeName" label="分类"  width="120"></el-table-column>
             <el-table-column prop="type" :formatter="typeStr" label="类型" width="80" show-overflow-tooltip></el-table-column>
-            <!-- <el-table-column prop="labelIds" label="标签" width="80" show-overflow-tooltip></el-table-column> -->
             <el-table-column prop="publishDate" label="发布时间" width="185"></el-table-column>
             <el-table-column prop="docreader" label="概述" width="220" show-overflow-tooltip></el-table-column>
             <el-table-column prop="disabled" label="状态" :formatter="disabledStr" width="70"></el-table-column>
-            <el-table-column fixed="right" label="操作" width="218">
+            <el-table-column fixed="right" label="操作" width="210">
                 <template slot-scope="scope">
                     <el-button
                       size="small"
                       type="primary"
-                      @click="handleEdit(scope.row)">详情</el-button>
+                      icon="el-icon-edit"
+                      @click="handleEdit(scope.row)"></el-button>
                     <el-button v-if="scope.row.disabled == 0"
                       size="small"
                       type="info"
+                      icon="el-icon-circle-check-outline"
                       @click="handlePublish(scope.row)">发布</el-button>
                     <el-button v-if="scope.row.disabled == 1"
                       size="small"
                       type="primary"
+                      icon="el-icon-circle-close-outline"
                       @click="handleDisabled(scope.row)">下线</el-button>
                     <el-button
                       size="small"
                       type="danger"
-                      @click="handleDelete(scope.row)">删除</el-button>
+                      icon="el-icon-delete"
+                      @click="handleDelete(scope.row)"></el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -50,6 +57,50 @@
               layout="total, sizes, prev, pager, next, jumper"
               :total="formInline.total"></el-pagination>
     </div>
+    <el-dialog
+      title="类型管理"
+      :visible.sync="typeListVisible"
+      width="560px"
+      :before-close="handleCloseTypeList">
+      <div>
+           <el-table :data="articleTypeList" stripe border >
+                <el-table-column type="index" label="序号"></el-table-column>
+                <el-table-column prop="name" label="分类名称"  width="220"></el-table-column>
+                <el-table-column fixed="right" label="操作" width="208">
+                    <template slot-scope="scope">
+                        <el-button
+                          size="small"
+                          type="primary"
+                          @click="toUpdateType(scope.row)">修改</el-button>
+                        <el-button
+                          size="small"
+                          type="danger"
+                          @click="handleDeleteAType(scope.row)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+
+      </div>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="typeListVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
+
+    <el-dialog
+      :title="typeTitle"
+      :visible.sync="typeInfoVisible"
+      width="360px"
+      :before-close="handleCloseTypeInfo">
+        <el-form class="form-box article"  label-width="60px">
+            <el-form-item label="名称:">
+                <el-input v-model="articleType.name"  class="width50" placeholder="请输入分类名称"></el-input>
+            </el-form-item>
+        </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="typeInfoVisible = false">取 消</el-button>
+        <el-button type="primary" @click="saveArticleType">确 定</el-button>
+      </div>
+    </el-dialog>
 </div>
 </template>
 <script>
@@ -57,7 +108,10 @@ const HttpUrl = {
     findArticleAll: '/manage/article/findAll',
     publishArticle: '/manage/article/pulish',
     disabledArticle: '/manage/article/disabled',
-    deleteArticle: '/manage/article/delete'
+    deleteArticle: '/manage/article/delete',
+    findArticleTypeAll: '/manage/articletype/findAll',
+    deleteArticleType: '/manage/articletype/delete',
+    saveArticleType: '/manage/articletype/saveOrUpdate',
 }
 export default {
     data(){
@@ -68,17 +122,31 @@ export default {
                 currPage: 1,
                 total: 0,
             },
-            articleList: []
+            articleType:{
+                id: 0,
+                name: ''
+            },
+            articleList: [],
+            articleTypeList: [],
+            typeListVisible: false,
+            typeInfoVisible: false,
+            typeTitle: '新增类型'
         }
     },
     created(){
         this.loadArticleList();
+        this.loadArticleTypeList();
     },
     methods:{
         loadArticleList(){
             this.$.post(HttpUrl.findArticleAll, this.formInline).then( results => {
                 this.articleList = results.articleList;
                 this.formInline.total = results.total;
+            });
+        },
+        loadArticleTypeList(){
+            return this.$.get(HttpUrl.findArticleTypeAll).then( articleTypeList => {
+                this.articleTypeList = articleTypeList;
             });
         },
         // 发布
@@ -107,7 +175,7 @@ export default {
         },
         handleDisabled(item) {
             this.$.get(`${HttpUrl.disabledArticle}?id=${item.id}`).then( () => {
-                this.$message('操作成功')
+                this.loadArticleList();
             });
         },
         handleDelete(item){
@@ -127,6 +195,31 @@ export default {
                 });
             });
         },
+        handleDeleteAType(item){
+            this.$confirm('此操作将永久删除该文章分类, 是否继续?', '提示', {
+                  confirmButtonText: '确定',
+                  cancelButtonText: '取消',
+                  type: 'warning'
+            }).then(() => {
+                this.$.get(`${HttpUrl.deleteArticleType}?id=${item.id}`).then( () => {
+                    this.$message('操作成功')
+                    this.loadArticleTypeList();
+                });
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '已取消发布'
+                });
+            });
+        },
+        saveArticleType(){
+            this.$.post(HttpUrl.saveArticleType, this.articleType).then( results => {
+                this.loadArticleTypeList().then( () =>{
+                    this.typeInfoVisible = false;
+                })
+
+            });
+        },
         handleEdit(item){
           this.$router.push(`/articlePulish/${item.id}`);
         },
@@ -143,8 +236,26 @@ export default {
                 this.loadArticleList();
             }
         },
+        toUpdateType({id, name}){
+            this.articleType.id = id;
+            this.articleType.name = name;
+            this.typeTitle = '修改类型';
+            this.typeInfoVisible = true;
+        },
+        toSaveType(){
+            this.articleType.id = 0;
+            this.articleType.name = '';
+            this.typeTitle = '新增类型';
+            this.typeInfoVisible = true;
+        },
         disabledStr(row, column, cellValue){
             return row.disabled == 1 ? '发布中' : '已下线';
+        },
+        handleCloseTypeList(done) {
+            done();
+        },
+        handleCloseTypeInfo(done) {
+            done();
         },
         typeStr({type}){
             return type == 1 ? '文章': type == 2 ? '随记' :'';
