@@ -1,5 +1,5 @@
 <template>
-<div class="container">未实现
+<div class="container">
     <el-form :model="userInfo" :rules="rules" ref="userInfo" label-width="100px" class="form-box user-form">
         <el-form-item label="用户名" prop="email">
             <el-input class="width50" v-model="userInfo.email" placeholder="请输入用户名称，长度2-8个字符"></el-input>

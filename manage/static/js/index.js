@@ -4,7 +4,7 @@ import VueRouter from 'vue-router';
 // import store from './vuex/store.js';
 import routes from './router/route.js';
 
-import Element from 'element-ui'
+import Element from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css'
 
 import axios from 'axios';
@@ -36,7 +36,6 @@ axiosIns.interceptors.response.use( res =>{
                 query:{'redirect':app.$route.fullPath},
             });
         } else if(status === 997){
-            console
             app.$message.error(data.errmsg);
             return Promise.reject(res);
         }else if(status === 0) {
@@ -62,16 +61,27 @@ ajaxMethod.forEach((method)=>{
     api[method] = function(uri,data,config){
         // 对axios包装的一层
         return new Promise(function(resolve,reject){
+            if(!uri){
+                app.$message.error('request url不能为空');
+            }
             if(!config || config.cache != false) {
                 uri += uri.indexOf('?')>0? '&' : '?' + '_r='+ Date.now();
             }
+            let loading = Element.Loading.service({
+                  lock: true,
+                  text: 'Loading',
+                  spinner: 'el-icon-loading',
+                  background: 'rgba(0, 0, 0, 0.7)'
+            });
             axiosIns[method](uri,data,config).then((json)=>{
                 resolve(json);
+                loading.close();
             }).catch((response)=>{
                 // 拦截器里reject都会走到这里
                 if(response.status===200 && response.data.status == 0){
                     // app.$message(response.data.errmsg);
                 }
+                loading.close();
             })
         })
     }
