@@ -16,7 +16,7 @@
             <el-button size="mini" @click="roleListVisible = true">查看角色</el-button>
             <el-button size="mini" @click="roleInfoVisible = true">新增角色</el-button>
         </el-form>
-        <el-table :data="usersList" stripe border  v-loading="loading.usersList">
+        <el-table :data="usersList" stripe border height="280" v-loading="loading.usersList">
             <el-table-column fixed type="index"></el-table-column>
             <el-table-column prop="nickName" label="昵称"></el-table-column>
             <el-table-column prop="userName" label="用户名"></el-table-column>
@@ -30,6 +30,10 @@
         -->
         <el-table-column label="操作" width="175">
             <template slot-scope="scope">
+                <el-button
+                  size="small"
+                  icon="el-icon-edit"
+                  @click="handleEdit(scope.row)"></el-button>
                 <el-button v-if="scope.row.disabled == 0"
                   size="small"
                   type="info"
@@ -47,12 +51,12 @@
     </el-table>
 </div>
     <el-dialog
-      title="角色管理"
+      :title="roleTitle"
       :visible.sync="roleListVisible"
       width="440px"
       :before-close="handleCloseRoleList">
       <div>
-           <el-table :data="usersRoleList" stripe border height="280"  v-loading="loading.roleList">
+           <el-table :data="usersRoleList" stripe border  v-loading="loading.roleList">
                 <el-table-column type="index" align="center"></el-table-column>
                 <el-table-column prop="name"  align="center" label="角色名称" width="191"></el-table-column>
                 <el-table-column label="操作" align="center" width="160">
@@ -138,6 +142,9 @@ export default {
                 this.usersRoleList = usersRoleList;
                 this.loading.roleList = false;
             });
+        },
+        handleEdit(item){
+          this.$router.push(`/userSave/${item.id}`);
         },
         handleDelete(item){
             this.$confirm('此操作将永久删除用户和用户的文章, 是否继续?', '提示', {

@@ -17,7 +17,7 @@ export default [{
         name: 'userList',
         component: require('../views/user/user.list.vue'),
     }, {
-        path: '/userSave',
+        path: '/userSave/:id?',
         name: 'userSave',
         component: require('../views/user/user.add.vue'),
     }, {

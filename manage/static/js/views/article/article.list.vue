@@ -64,7 +64,7 @@
               :total="formInline.total"></el-pagination>
     </div>
     <el-dialog
-      title="类型管理"
+      :title="typeTitle"
       :visible.sync="typeListVisible"
       width="440px"
       :before-close="handleCloseTypeList">

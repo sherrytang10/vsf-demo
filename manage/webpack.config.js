@@ -46,12 +46,12 @@ module.exports = {
             minRatio: 0
         }),
 
-        // new webpack.optimize.UglifyJsPlugin({
-        //     compress: {
-        //         // 在UglifyJs删除没有用到的代码时不输出警告
-        //         warnings: false,
-        //     }
-        // }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                // 在UglifyJs删除没有用到的代码时不输出警告
+                warnings: false,
+            }
+        }),
         // 抽取公共方法
         // new webpack.optimize.CommonsChunkPlugin({
         //     name: 'common',
