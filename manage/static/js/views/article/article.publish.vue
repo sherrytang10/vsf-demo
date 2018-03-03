@@ -18,10 +18,12 @@
                 <el-input type="textarea" v-model="article.docreader" placeholder="请输入概要"></el-input>
             </el-form-item>
             <el-form-item label="类型:">
-                <el-radio v-model="article.type" label="1">文章</el-radio>
-                <el-radio v-model="article.type" label="2">短记</el-radio>
+                <el-radio-group v-model="article.type">
+                    <el-radio :label="1">文章</el-radio>
+                    <el-radio :label="2">短记</el-radio>
+                </el-radio-group>
             </el-form-item>
-            <el-form-item label="题图:" ref="picture">
+            <el-form-item label="题图:" ref="picture"  v-if="article.type != 2">
                 <el-upload
                   class="article-picture-upload"
                   drag
@@ -82,7 +84,7 @@ export default {
                 articleTypeId: '',
                 // labelId:[],
                 publishDate: '',
-                type: '1', //文章或短记
+                type: 1, //文章或短记
             },
             articleType:[{
                 id: 1,
@@ -132,10 +134,10 @@ export default {
             });
         },
         loadArticleInfo(){
-            console.log(this.$route)
             let {id} = this.$route.params;
             if(id){
                 this.$.get(`${HttpUrl.findArticleInfo}${id}`).then( results => {
+                    console.log(this.article.type)
                     this.article = results;
                 });
             }
@@ -153,11 +155,11 @@ export default {
     },
     watch:{
         'article.type'(curVal,oldVal){
-            if(curVal == 2) {
-                this.$refs.picture.$el.style.display = 'none';
-            } else {
-                this.$refs.picture.$el.style.display = 'block';
-            }
+            // if(curVal == 2) {
+            //     this.$refs.picture.$el.style.display = 'none';
+            // } else {
+            //     this.$refs.picture.$el.style.display = 'block';
+            // }
         }
     }
 }

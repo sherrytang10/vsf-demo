@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <el-form :inline="true" :model="formInline" class="form-box">
-            <el-form-item label="昵称">
-                <el-input v-model="formInline.nickName" placeholder="昵称"></el-input>
+            <el-form-item label="标题">
+                <el-input v-model="formInline.title" placeholder="标题"></el-input>
             </el-select>
         </el-form-item>
         <el-form-item>
@@ -124,7 +124,7 @@ export default {
     data(){
         return {
             formInline: {
-                nickName: '',
+                title: '',
                 pageSize: 20,
                 currPage: 1,
                 total: 0,
