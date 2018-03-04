@@ -25,6 +25,10 @@
         height: 60px;
         background-color: $bg-header-color;
         text-align: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
         &-about {
             padding-top: 5px;
             &-icons {
