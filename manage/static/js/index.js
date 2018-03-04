@@ -36,16 +36,13 @@ axiosIns.interceptors.response.use( res =>{
                 query:{'redirect':app.$route.fullPath},
             });
         } else if(status === 997){
-            app.$message.error(data.errmsg);
+            // app.$message.error(data.errmsg);
             return Promise.reject(res);
-        }else if(status === 0) {
-            // app.$alert(data.errmsg, '系统异常', {
-            //     confirmButtonText: '确定'
-            // });
-            app.$message.error(data.errmsg);
-            return Promise.reject(res);
-        } else {
+        }else if(status == 1) {
             return data.results;
+        } else {
+            app.$message.error(data.errmsg);
+            return Promise.reject(res);
         }
     }else{
         return Promise.reject(res);
@@ -65,7 +62,7 @@ ajaxMethod.forEach((method)=>{
                 app.$message.error('request url不能为空');
             }
             if(!config || config.cache != false) {
-                uri += uri.indexOf('?')>0? '&' : '?' + '_r='+ Date.now();
+                uri += (uri.indexOf('?')>0? '&' : '?') + '_r='+ Date.now();
             }
             let loading = Element.Loading.service({
                   lock: true,
@@ -79,7 +76,7 @@ ajaxMethod.forEach((method)=>{
             }).catch((response)=>{
                 // 拦截器里reject都会走到这里
                 if(response.status===200 && response.data.status == 0){
-                    // app.$message(response.data.errmsg);
+                    app.$message(response.data.errmsg);
                 }
                 loading.close();
             })

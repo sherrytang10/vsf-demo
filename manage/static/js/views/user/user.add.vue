@@ -30,8 +30,9 @@
 </template>
 <script>
     const HttpUrl = {
+        getOneById: '/manage/users/getOneById',
         saveUrl: '/manage/users/save',
-        usersGroupList: '/manage/usersgroup/getUsersGroupList'
+        usersRoleList: '/manage/usersrole/findAll'
     }
   export default {
     data() {
@@ -39,12 +40,12 @@
         userInfo: {
             email: '',
             nickName: '',
-            password: '123456',
-            roleId: 1
+            password: '',
+            roleId: 0
         },
         usersGroup:[{
-          id: 1,
-          name: '管理员'
+          id: 0,
+          name: '临时用户'
         }],
         rules: {
             email: [
@@ -65,13 +66,28 @@
       };
     },
     created(){
-        this.loadUsersGroupList();
+        this.loadUsersRoleList().then( () => {
+            this.getUsersInfo();
+        })
     },
     methods: {
+      loadUsersRoleList(){
+        return this.$.get(HttpUrl.usersRoleList).then( results => {
+            this.usersGroup = results;
+        });
+      },
+      getUsersInfo(){
+            let {id} = this.$route.params;
+            if(id){
+                this.$.get(`${HttpUrl.getOneById}?id=${id}`).then( userInfo => {
+                    console.log(userInfo)
+                    this.userInfo = userInfo;
+                });
+            }
+      },
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            console.log(valid)
             this.registerUsers();
           } else {
             return false;
@@ -84,11 +100,6 @@
       registerUsers(){
         this.$.post(HttpUrl.saveUrl, this.userInfo).then( results => {
             this.$router.push('/userList');
-        });
-      },
-      loadUsersGroupList(){
-        this.$.get(HttpUrl.usersGroupList).then( results => {
-            this.usersGroup = results;
         });
       }
     }
