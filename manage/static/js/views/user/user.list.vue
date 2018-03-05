@@ -19,9 +19,9 @@
         <el-table :data="usersList" stripe border height="280" v-loading="loading.usersList">
             <el-table-column fixed type="index"></el-table-column>
             <el-table-column prop="nickName" label="昵称"></el-table-column>
-            <el-table-column prop="userName" label="用户名"></el-table-column>
             <el-table-column prop="roleName" label="角色"></el-table-column>
             <el-table-column prop="email" label="邮箱"></el-table-column>
+            <el-table-column prop="userName" label="用户名"></el-table-column>
             <el-table-column prop="phone" label="联系方式"></el-table-column>
             <el-table-column prop="motto" label="座右铭"></el-table-column>
             <!-- <el-table-column prop="juejin" label="掘金"></el-table-column>
