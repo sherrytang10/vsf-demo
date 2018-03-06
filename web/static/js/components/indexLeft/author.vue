@@ -22,8 +22,12 @@ export default {
       setAuthorInfo: "setAuthorInfo"
     }),
     getAuthorInfo() {
-      this.$.get("/restapi/users/findOne/1").then(results => {
-        this.setAuthorInfo(results || {});
+      let identity = CommFunc.getSessionStorage('authoridentity');
+      if(!identity){
+        identity = 'NDkzNTQ5MTc0QHFxLmNvbQ==';
+      }
+      this.$.get(`/restapi/users/findOneByIdentity/${identity}`).then(results => {
+          this.setAuthorInfo(results || {});
       });
     }
   }

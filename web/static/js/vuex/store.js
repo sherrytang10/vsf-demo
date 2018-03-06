@@ -24,6 +24,7 @@ let store = new Vuex.Store({
     },
     // 组件调用store.state.xxx
     state: {
+        ix: 0
         // $: Vue.prototype.$
     },
     getters: {

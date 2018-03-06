@@ -39,7 +39,7 @@ module.exports = {
             // "typeof window": JSON.stringify("object")
         }),
         new HtmlWebpackPlugin({  //根据模板插入css/js等生成最终HTML
-            title: '测试',// 模板参数
+            title: '天冰博客',// 模板参数
             // msg: '这是一个测试参数的测试参数',// 模板参数
             filename: '../index.html', //生成的html存放路径，相对于 output -> path
             template: '../template/index.html', //html模板路径, 相对于 output -> path

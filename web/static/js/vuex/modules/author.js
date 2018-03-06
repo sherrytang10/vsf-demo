@@ -4,9 +4,11 @@ const actions = {
 };
 const mutations = {
     setAuthorInfo( state, authorInfo){
-        console.log(authorInfo)
         state.authorInfo = authorInfo;
-        console.log(state)
+        document.title = authorInfo.nickName + ' | 天冰博客'
+    },
+    setAuthorList(state, authorList){
+        state.authorList = authorList;
     }
 };
 
@@ -15,7 +17,8 @@ export default {
     // 命名空间  局部
     namespaced: true,
     state: {
-        authorInfo: {}
+        authorInfo: {},
+        authorList: []
     },
     getters,
     actions,

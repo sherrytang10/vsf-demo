@@ -12,11 +12,16 @@
 </ul>
 </template>
 <script>
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "left-menu",
+  computed: {
+    ...mapState({
+      ix: state => state.ix
+    })
+  },
   data() {
     return {
-      ix: 0,
       menuList: [
         {
           uri: "/article/1",
@@ -39,7 +44,7 @@ export default {
         //   name: "标签"
         // },
         {
-          uri: "",
+          uri: "/authorlist",
           name: "作者"
         },
         {
@@ -50,12 +55,15 @@ export default {
     };
   },
   methods: {
+    ...mapMutations({
+      setMenuIX: "setMenuIX"
+    }),
     tip(uri, index) {
       if (!uri) {
         alert("功能未实现");
         return true;
       }
-      this.ix = index;
+      this.setMenuIX(index);
       this.$router.push(uri);
     }
   }

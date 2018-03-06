@@ -1,10 +1,17 @@
 <template>
     <div class="articletype">
+      <template v-if="articleClassify && articleClassify.length > 0">
         <article class="sf-article sf-article-type-list" v-for="item in articleClassify" :key="item.id">
             <router-link :to="`/articlelist/${type}/${item.id}`">
                 {{item.classify}} <span class="sf-article-type-num">({{item.num}})</span>
             </router-link>
         </article>
+      </template>
+      <template v-else>
+            <article class="sf-article sf-article-list-item">
+                暂无文章分类
+            </article>
+        </template>
     </div>
 </template>
 <script>

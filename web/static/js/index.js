@@ -4,11 +4,12 @@ import VueRouter from 'vue-router';
 import store from './vuex/store.js';
 import routes from './router/route.js';
 import axios from 'axios';
+import '../js/common/CommFunc.js';
 import '../css/layout.scss';
 
 import IndexVue from './views/index.vue';
 Vue.use(VueRouter);
-
+// Vue.use(CommFunc);
 
 
 
@@ -28,12 +29,7 @@ axiosIns.interceptors.response.use(res => {
     let status = res.status;
     if (status === 200 || status === 304 || status === 201) {
         status = data.status;
-        if (status === 998) {
-            app.$router.push({
-                path: '/login',
-                query: { 'redirect': app.$route.fullPath },
-            });
-        } else if (status === 0) {
+        if (status === 0) {
             // app.$message.error(data.errmsg);
             return Promise.reject(res);
         } else {
@@ -50,9 +46,23 @@ axiosIns.interceptors.response.use(res => {
 let ajaxMethod = ['get', 'post'];
 let api = {};
 ajaxMethod.forEach((method) => {
-    api[method] = function(uri, data, config) {
+    api[method] = function(uri, data = {}, config = {}) {
         // 对axios包装的一层
         return new Promise(function(resolve, reject) {
+            if(!uri){
+                app.$message.error('request url不能为空');
+            }
+            if(!config || config.cache != false) {
+                uri += (uri.indexOf('?')>0? '&' : '?') + '_r='+ Date.now();
+            }
+            let identity = CommFunc.getSessionStorage('authoridentity');
+            if(identity) {
+                if(method == 'post') {
+                    data.identity = identity;
+                } else {
+                uri += (uri.indexOf('?')>0? '&' : '?') + 'identity='+ identity;
+                }
+            }
             axiosIns[method](uri, data, config).then((json) => {
                 resolve(json);
             }).catch((response) => {

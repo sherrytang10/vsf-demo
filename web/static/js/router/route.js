@@ -19,4 +19,8 @@ default [{
     path: '/articlelist/:type/:id',
     name: 'articlelist',
     component: require('../components/article/sfArticleList.vue')
+}, {
+    path: '/authorlist',
+    name: 'authorlist',
+    component: require('../components/author/sfAuthorList.vue')
 }]

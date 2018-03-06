@@ -3,7 +3,7 @@
         <div class="sf-sidebar">
             <div class="sf-brand">
                 <div class="sf-brand-meta">
-                    <span class="sf-brand-title">天冰</span>
+                    <span class="sf-brand-title">天冰博客</span>
                     <span>好记性不如烂笔头</span>
                 </div>
             </div>

@@ -38,8 +38,9 @@ export default {
       setArticleList: "setArticleList"
     }),
     getArticleList() {
+      let typeId = this.$route.params.id || 1;
       this.$
-        .get(`/restapi/article/findAll?articleTypeId=${this.$route.params.id}`)
+        .get(`/restapi/article/findAll?articleTypeId=${typeId}`)
         .then(results => {
           // this.articleList = res.results;
           this.setArticleList(results.articleList);
