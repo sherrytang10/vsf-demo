@@ -1,36 +1,57 @@
 <template>
-<div class="container">
-    <el-form :model="userInfo" :rules="rules" ref="userInfo" label-width="100px" class="form-box user-form">
-        <el-form-item label="电子邮箱" prop="email">
-            <el-input class="width50" v-model="userInfo.email" placeholder="请输入电子邮箱"></el-input>
-        </el-form-item>
-        <el-form-item label="昵称" prop="nickName">
-            <el-input class="width50" v-model="userInfo.nickName" placeholder="请输入用户昵称，长度1-16个字符"></el-input>
-        </el-form-item>
-        <el-form-item label="密码" prop="password">
-            <el-input class="width50"  type="password" v-model="userInfo.password"placeholder="请输入用户密码"></el-input>
-        </el-form-item>
-        <el-form-item label="角色" prop="roleId">
-            <el-select class="width50" v-model="userInfo.roleId" placeholder="请选择">
-                <el-option
-                  v-for="item in usersGroup"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id">
-                </el-option>
-              </el-select>
-        </el-form-item>
-        <el-form-item label="用户名" prop="userName">
-            <el-input class="width50" v-model="userInfo.userName" placeholder="请输入用户名，长度2-8个字符"></el-input>
-        </el-form-item>
-        <el-form-item label="联系方式" prop="phone">
-            <el-input class="width50" v-model="userInfo.phone" placeholder="请输入联系方式"></el-input>
-        </el-form-item>
-        <el-form-item>
-            <el-button type="primary" @click="submitForm('userInfo')">立即创建</el-button>
-            <el-button @click="resetForm('userInfo')">重置</el-button>
-        </el-form-item>
-    </el-form>
+<div class="container form-box">
+    <el-row :gutter="20">
+        <el-col :span="12">
+          <el-form :model="userInfo" :rules="rules" ref="userInfo" label-width="100px" class="user-form">
+              <el-form-item label="电子邮箱" prop="email">
+                  <el-input v-model="userInfo.email" placeholder="请输入电子邮箱"></el-input>
+              </el-form-item>
+              <el-form-item label="昵称" prop="nickName">
+                  <el-input v-model="userInfo.nickName" placeholder="请输入用户昵称，长度1-16个字符"></el-input>
+              </el-form-item>
+              <el-form-item label="密码" prop="password">
+                  <el-input  type="password" v-model="userInfo.password"placeholder="请输入用户密码"></el-input>
+              </el-form-item>
+              <el-form-item label="角色" prop="roleId">
+                  <el-select v-model="userInfo.roleId" placeholder="请选择">
+                      <el-option
+                        v-for="item in usersGroup"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id">
+                      </el-option>
+                    </el-select>
+              </el-form-item>
+              <el-form-item label="用户名" prop="userName">
+                  <el-input v-model="userInfo.userName" placeholder="请输入用户名，长度2-8个字符"></el-input>
+              </el-form-item>
+              <el-form-item label="联系方式" prop="phone">
+                  <el-input v-model="userInfo.phone" placeholder="请输入联系方式"></el-input>
+              </el-form-item>
+              <el-form-item>
+                  <el-button type="primary" @click="submitForm('userInfo')">
+                        {{userInfo.id ? '立即创建' : '确认修改'}}
+                    </el-button>
+                  <el-button @click="resetForm('userInfo')">重置</el-button>
+              </el-form-item>
+          </el-form>
+        </el-col>
+        <el-col :span="12" class="headimg-box">
+            <el-upload
+              class="avatar-uploader"
+              action="/manage/picture/upload"
+              :show-file-list="false"
+              :on-success="uploadSuccess"
+              :on-error="uploadError"
+              :before-upload="beforeUpload">
+                <div class="avatar-box">
+                    <img v-if="userInfo.headimg" :src="userInfo.headimg" class="avatar-headimg">
+                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </div>
+                <el-button size="small" type="primary" class="avatar-btn">上传头像</el-button>
+            </el-upload>
+        </el-col>
+    </el-row>
 </div>
 </template>
 <script>
@@ -48,7 +69,8 @@
             nickName: '',
             userName: '',
             password: '',
-            roleId: 0
+            roleId: 0,
+            headimg: ''
         },
         usersGroup:[{
           id: 0,
@@ -81,6 +103,8 @@
       };
     },
     created(){
+        let {id} = this.$route.params;
+        this.userInfo.id = id;
         this.loadUsersRoleList().then( () => {
             this.getUsersInfo();
         })
@@ -92,9 +116,8 @@
         });
       },
       getUsersInfo(){
-            let {id} = this.$route.params;
-            if(id){
-                this.$.get(`${HttpUrl.getOneById}?id=${id}`).then( userInfo => {
+            if(this.userInfo.id){
+                this.$.get(`${HttpUrl.getOneById}?id=${this.userInfo.id}`).then( userInfo => {
                     console.log(userInfo)
                     this.userInfo = userInfo;
                 });
@@ -108,15 +131,41 @@
             return false;
           }
         });
-      },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
-      },
-      registerUsers(){
-        this.$.post(HttpUrl.saveUrl, this.userInfo).then( results => {
-            this.$router.push('/userList');
-        });
-      }
+       },
+        resetForm(formName) {
+            this.$refs[formName].resetFields();
+        },
+        registerUsers(){
+            this.$.post(HttpUrl.saveUrl, this.userInfo).then( results => {
+                this.$router.push('/userList');
+            });
+        },
+        uploadSuccess(data){
+            if(data.status == 1) {
+                this.userInfo.headimg = data.results;
+            } else {
+                this.$alert(data.errmsg, '上传图片异常', {
+                    confirmButtonText: '确定'
+                });
+            }
+        },
+        uploadError(err){
+            this.$alert(err.message, `上传图片异常:${err.status}`, {
+                confirmButtonText: '确定'
+            });
+        },
+        beforeUpload(file){
+            const isJPG = file.type === 'image/jpeg';
+            const isLt2M = file.size / 1024 / 1024 < 2;
+
+            if (!isJPG) {
+              this.$message.error('上传头像图片只能是 JPG 格式!');
+            }
+            if (!isLt2M) {
+              this.$message.error('上传头像图片大小不能超过 2MB!');
+            }
+            return isJPG && isLt2M;
+        }
     }
   }
 </script>
