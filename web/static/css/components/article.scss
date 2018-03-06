@@ -6,6 +6,8 @@
         padding: 20px 40px 5px;
         @include border-bottom;
         &-type {
+            float: right;
+            color: #ababab;
             &-list {
                 margin-left: 40px;
                 width: 40%;
@@ -18,10 +20,13 @@
         &-list {
             &-item {
                 @include text-clamp(1);
-                margin-left: 5%;
                 padding-left: 20px;
                 width: 80%;
                 border-bottom-style: dashed;
+                @include transition;
+                &-animate{
+                    margin-left: 5%;
+                }
             }
         }
         &-smalltitle {

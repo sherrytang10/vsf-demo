@@ -1,6 +1,6 @@
 <template>
     <div class="sf-author">
-        <img src="../../../images/headimg.jpg">
+        <img :src="authorInfo.headimg || `../../../images/headimg.jpg`">
         <span class="sf-author-name">{{authorInfo.nickName}}</span>
         <span class="sf-author-description">{{authorInfo.motto}}</span>
     </div>

@@ -32,3 +32,10 @@
     -webkit-line-clamp: $num;
     overflow: hidden;
 }
+
+@mixin transition($time: 1s){
+    -webkit-transition: all $time ease-in-out;
+     -webkit-transition: all $time ease-in-out;
+     -moz-transition: all $time ease-in-out;
+     -o-transition: all $time ease-in-out;
+}
