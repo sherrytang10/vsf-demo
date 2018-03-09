@@ -5,7 +5,7 @@
         padding: 10px;
         img{
             display: block;
-            margin: 15px auto 5px;
+            margin: 5px auto 5px;
             width: 120px;
             height: 120px;
             @include border;
@@ -25,4 +25,18 @@
             color: $ft-f3-color;
         }
     }
+    // &-link{
+    //     display: flex;
+    //     height: 3rem;
+    //     text-align: center;
+    //     &-item{
+    //         flex: 1;
+    //         padding-top: .2rem;
+    //         padding-bottom: .2rem;
+    //         > span{
+    //             height: 1.5rem;
+    //             display: block;
+    //         }
+    //     }
+    // }
 }

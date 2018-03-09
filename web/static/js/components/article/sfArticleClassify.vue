@@ -35,6 +35,15 @@ export default {
   created() {
     this.loadData();
   },
+  updated(){
+    // html首次挂在完成
+    let items = document.querySelectorAll('.sf-article-type-list');
+    Array.from(items).forEach( (item, index) => {
+        setTimeout( () =>{
+          item.className += ' sf-article-type-list-animate';
+        }, index * 50)
+    });
+  },
   methods: {
     ...mapMutations("article", {
       setArticleClassify: "setArticleClassify"

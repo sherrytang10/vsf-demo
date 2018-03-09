@@ -1,8 +1,20 @@
 <template>
     <div class="sf-author">
-        <img :src="authorInfo.headimg || `../../../images/headimg.jpg`">
-        <span class="sf-author-name">{{authorInfo.nickName}}</span>
-        <span class="sf-author-description">{{authorInfo.motto}}</span>
+        <div>
+            <img :src="authorInfo.headimg || `../../../images/headimg.jpg`">
+            <span class="sf-author-name">{{authorInfo.nickName}}</span>
+            <span class="sf-author-description">{{authorInfo.motto || '天上冰，亮晶晶'}}</span>
+        </div>
+        <!-- <div class="sf-link">
+            <span class="sf-link-item">
+                <span class="link-item-count">145</span>
+                <span class="link-item-type">文章</span>
+            </span>
+            <span class="sf-link-item">
+                <span class="link-item-count">145</span>
+                <span class="link-item-type">随记</span>
+            </span>
+        </div> -->
     </div>
 </template>
 <script>

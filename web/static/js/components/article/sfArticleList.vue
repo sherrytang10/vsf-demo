@@ -1,5 +1,6 @@
 <template>
     <div class="articlelist">
+      <template v-if="firstLoad == false">
         <template v-if="articleList && articleList.length > 0">
             <article class="sf-article sf-article-list-item" v-for="item in articleList" :key="item.id" @click.native="loadAnimate(this)">
                 <router-link :to="`/articleinfo/${item.id}`">
@@ -13,6 +14,7 @@
                 此分类暂无文章
             </article>
         </template>
+        </template>
     </div>
 </template>
 <script>
@@ -21,13 +23,15 @@ export default {
   name: "sf-articlelist",
   computed: {
     ...mapState("article", {
-      articleList: state => state.articleList
+      articleList: state => state.articleList,
+      firstLoad: state => state.firstLoad
     })
   },
   created() {
     this.getArticleList();
   },
   mounted(){
+    this.firstLoad = false;
   },
   updated(){
 

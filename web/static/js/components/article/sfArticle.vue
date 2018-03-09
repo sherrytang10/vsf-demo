@@ -1,9 +1,10 @@
 <template>
     <div class="article">
+      <template v-if="firstLoad == false">
         <div v-if="!articleList || articleList.length == 0">
             <article class="sf-article sf-article-list-item">此分类暂无文章</article>
         </div>
-        <article class="sf-article" v-for="item in articleList" :key="item.id">
+        <article class="sf-article sf-article-self" v-for="item in articleList" :key="item.id">
             <router-link :to="`/articleinfo/${item.id}`">
                 <img v-if="item.type == 1" :src="item.picture || `/images/js.png`" alt="" class="sf-article-img">
                 <div :class="'sf-article-box' + (item.type == 1 ?  ' mleft' : '')">
@@ -22,6 +23,7 @@
                 </div>
             </router-link>
         </article>
+      </template>
     </div>
 </template>
 <script>
@@ -30,11 +32,21 @@ export default {
   name: "sf-article",
   computed: {
     ...mapState("article", {
-      articleList: state => state.articleList
+      articleList: state => state.articleList,
+      firstLoad: state => state.firstLoad
     })
   },
   created() {
     this.getArticleList();
+  },
+  updated(){
+    // html首次挂在完成
+    let items = document.querySelectorAll('.sf-article-self');
+    Array.from(items).forEach( (item, index) => {
+        setTimeout( () =>{
+          item.className += ' sf-article-self-animate';
+        }, index * 50)
+    });
   },
   methods: {
     ...mapMutations("article", {

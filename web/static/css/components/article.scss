@@ -3,14 +3,31 @@
 .#{$prefix} {
     &-article {
         position: relative;
-        padding: 20px 40px 5px;
+        // padding: 20px 40px 5px;
+        padding-top: 20px;
+        padding-right: 40px;
+        padding-bottom: 5px;
+        // padding-left: 40px;
         @include border-bottom;
+        &-self{
+            opacity: 0;
+            @include transition(0.5s);
+            &-animate{
+                opacity: 1;
+                padding-left: 40px;
+            }
+        }
         &-type {
             float: right;
             color: #ababab;
             &-list {
-                margin-left: 40px;
                 width: 40%;
+                opacity: 0;
+                @include transition(0.5s);
+                &-animate{
+                    opacity: 1;
+                    margin-left: 40px;
+                }
             }
             &-num {
                 font-size: 12px;
@@ -23,9 +40,12 @@
                 padding-left: 20px;
                 width: 80%;
                 border-bottom-style: dashed;
-                @include transition;
+                opacity: 0;
+                @include transition(0.5s);
                 &-animate{
+                    opacity: 1;
                     margin-left: 5%;
+                    padding-left: 40px;
                 }
             }
         }
@@ -86,5 +106,26 @@
                 }
             }
         }
+    }
+}
+
+@keyframes article{
+    from {
+        opacity: 0;
+        padding-left: 0;
+    }
+    to {
+        opacity: 1;
+        padding-left: 40px;
+    }
+}
+@-webkit-keyframes article{ /* Safari 和 Chrome */
+    from {
+        opacity: 0;
+        padding-left: 0;
+    }
+    to {
+        opacity: 1;
+        padding-left: 40px;
     }
 }
