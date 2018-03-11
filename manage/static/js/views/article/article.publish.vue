@@ -31,14 +31,12 @@
                   :show-file-list="false"
                   :on-success="uploadSuccess"
                   :on-error="uploadError">
-                    <div class="avatar-box"v-if="article.picture" >
+                    <div class="avatar-box" v-if="article.picture">
                         <img :src="article.picture" class="avatar-headimg">
                     </div>
                     <div class="el-upload__tip" slot="tip">
                         <div class="el-upload__text">将文件拖到虚框，或点击虚框上传</div>
                     </div>
-
-
                 </el-upload>
             </el-form-item>
             <el-form-item label="正文:">
@@ -90,7 +88,6 @@ export default {
                 publishDate: '',
                 type: 1, //文章或短记
             },
-            pictureOld: [],
             articleType:[{
                 id: 1,
                 name: 'Web前端'
@@ -120,13 +117,17 @@ export default {
             target.className += ' cur';
         },
         uploadSuccess(data){
-            if(data.status == 1) {
+            try{
+                if(data.status == 1) {
                 this.article.picture = data.results;
             } else {
                 this.$alert(data.errmsg, '上传图片异常', {
                     confirmButtonText: '确定'
                 });
             }
+        }catch(e){
+            console.log(e)
+        }
         },
         uploadError(err){
             this.$alert(err.message, `上传图片异常:${err.status}`, {
@@ -139,13 +140,9 @@ export default {
             });
         },
         loadArticleInfo(){
-            let id = this.$route.params.id || 0;
-            if(id != null){
+            if(id){
                 this.$.get(`${HttpUrl.findArticleInfo}${id}`).then( results => {
                     this.article = results;
-                    if(results.picture){
-                        this.pictureOld = [{url: results.picture, name: results.picture.match(/[^\/]+$/)[0]}]
-                    }
                 });
             }
         },
@@ -169,6 +166,16 @@ export default {
             // }
         },
         "$route"(){
+            this.article = {
+                id: 0,
+                title:'',
+                content: '',
+                picture: '',
+                docreader:'',
+                articleTypeId: '',
+                publishDate: '',
+                type: 1, //文章或短记
+            }
             this.loadArticleInfo();
         }
     }

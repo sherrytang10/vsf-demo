@@ -167,8 +167,16 @@
     },
     watch:{
         "$route"(){
-            console.log('11')
-            this.userInfo.id = 0;
+            this.userInfo = {
+              id: 0,
+              email: '',
+              phone: '',
+              nickName: '',
+              userName: '',
+              password: '',
+              roleId: 0,
+              headimg: ''
+            }
             this.getUsersInfo();
         }
     }
