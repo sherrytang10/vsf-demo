@@ -9,3 +9,21 @@
 .width50{
     width: 50%;
 }
+.headimg-box{
+    .avatar-uploader {
+        .avatar-box {
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .avatar-box:hover {
+            border-color: #409EFF;
+        }
+        .avatar-headimg{
+            width: 178px;
+            height: 178px;
+            display: block;
+        }
+    }
+}

@@ -23,18 +23,22 @@
                     <el-radio :label="2">短记</el-radio>
                 </el-radio-group>
             </el-form-item>
-            <el-form-item label="题图:" ref="picture"  v-if="article.type != 2">
+            <el-form-item label="题图:" ref="picture"  v-if="article.type != 2" class="headimg-box">
                 <el-upload
-                  class="article-picture-upload"
                   drag
+                  class="avatar-uploader"
                   action="/manage/picture/upload"
-                  list-type="picture"
+                  :show-file-list="false"
                   :on-success="uploadSuccess"
-                  :on-error="uploadError"
-                  multiple>
-                    <i class="el-icon-upload"></i>
-                    <div class="el-upload__text">添加题图</br>将文件拖到此处，或<em>点击上传</em></div>
-                    <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+                  :on-error="uploadError">
+                    <div class="avatar-box"v-if="article.picture" >
+                        <img :src="article.picture" class="avatar-headimg">
+                    </div>
+                    <div class="el-upload__tip" slot="tip">
+                        <div class="el-upload__text">将文件拖到虚框，或点击虚框上传</div>
+                    </div>
+
+
                 </el-upload>
             </el-form-item>
             <el-form-item label="正文:">
@@ -86,6 +90,7 @@ export default {
                 publishDate: '',
                 type: 1, //文章或短记
             },
+            pictureOld: [],
             articleType:[{
                 id: 1,
                 name: 'Web前端'
@@ -134,11 +139,13 @@ export default {
             });
         },
         loadArticleInfo(){
-            let {id} = this.$route.params;
-            if(id){
+            let id = this.$route.params.id || 0;
+            if(id != null){
                 this.$.get(`${HttpUrl.findArticleInfo}${id}`).then( results => {
-                    console.log(this.article.type)
                     this.article = results;
+                    if(results.picture){
+                        this.pictureOld = [{url: results.picture, name: results.picture.match(/[^\/]+$/)[0]}]
+                    }
                 });
             }
         },
@@ -160,6 +167,9 @@ export default {
             // } else {
             //     this.$refs.picture.$el.style.display = 'block';
             // }
+        },
+        "$route"(){
+            this.loadArticleInfo();
         }
     }
 }

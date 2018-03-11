@@ -1,10 +1,10 @@
 <template>
-    <div class="sf-article">
+    <div class="sf-article sf-article-info">
         <h1 class="sf-article-title">
             {{articleinfo.title}}
         </h1>
         <div class="sf-article-meta">
-            <span>发表于：{{articleinfo.publishTime}}</span>
+            <span>发表于：{{articleinfo.publishDate}}</span>
             <span>分类：{{articleinfo.articleTypeName}}</span>
             <span>阅读次数：{{articleinfo.visitors}}</span>
         </div>
@@ -18,7 +18,7 @@ export default {
   name: "sf-articleinfo",
   data() {
     return {
-      publishTime: "2017-11-09",
+      publishDate: "2017-11-09",
       articleTypeName: 0,
       visitors: 0
     };

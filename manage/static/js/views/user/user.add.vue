@@ -104,7 +104,7 @@
     },
     created(){
         let {id} = this.$route.params;
-        this.userInfo.id = id;
+        this.userInfo.id = id || 0;
         this.loadUsersRoleList().then( () => {
             this.getUsersInfo();
         })
@@ -116,12 +116,10 @@
         });
       },
       getUsersInfo(){
-            if(this.userInfo.id){
-                this.$.get(`${HttpUrl.getOneById}?id=${this.userInfo.id}`).then( userInfo => {
-                    console.log(userInfo)
-                    this.userInfo = userInfo;
-                });
-            }
+            this.$.get(`${HttpUrl.getOneById}?id=${this.userInfo.id}`).then( userInfo => {
+                console.log(userInfo)
+                this.userInfo = userInfo;
+            });
       },
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
@@ -165,6 +163,13 @@
               this.$message.error('上传头像图片大小不能超过 2MB!');
             }
             return isJPG && isLt2M;
+        }
+    },
+    watch:{
+        "$route"(){
+            console.log('11')
+            this.userInfo.id = 0;
+            this.getUsersInfo();
         }
     }
   }
