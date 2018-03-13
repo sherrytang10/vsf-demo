@@ -14,7 +14,6 @@ const CommFunc = {
     },
     getSessionStorage(key) {
         let json = window.sessionStorage.getItem(this._sessionPrefix + key);
-
         if(json && typeof json == 'string'){
             try{
                 json = JSON.parse(json);

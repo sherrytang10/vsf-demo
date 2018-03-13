@@ -1,6 +1,6 @@
 <template>
-    <div class="articletype">
-        <article class="sf-article sf-article-type-list" v-for="item in authorList" :key="item.id">
+    <div class="sf-author-list">
+        <article class="sf-author-item" v-for="item in authorList" :key="item.id">
             <router-link :to="`/articleclassify/type`" @click.native="checkAuthor(item.identity)">
                 {{item.nickName}} <span class="sf-article-type-num">({{item.count}})</span>
             </router-link>
@@ -27,6 +27,16 @@ export default {
   created() {
     this.loadAuthorList();
   },
+  updated(){
+
+    // html首次挂在完成
+    let items = document.querySelectorAll('.sf-author-item');
+    Array.from(items).forEach( (item, index) => {
+        setTimeout( () =>{
+          item.className += ' sf-author-item-animate';
+        }, index * 50)
+    });
+  },
   methods: {
     ...mapMutations("author", {
       setAuthorList: "setAuthorList",
@@ -51,5 +61,5 @@ export default {
 };
 </script>
 <style scoped  lang="scss" type="text/css">
-@import "../../../css/components/article.scss";
+@import "../../../css/components/authorList.scss";
 </style>
