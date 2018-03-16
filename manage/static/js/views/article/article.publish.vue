@@ -108,6 +108,8 @@ export default {
         };
     },
     created(){
+        let {id} = this.$route.params;
+        this.article.id = id || 0;
         this.loadArticleType().then(()=>{
             this.loadArticleInfo();
         });
@@ -140,6 +142,7 @@ export default {
             });
         },
         loadArticleInfo(){
+            let id = this.article.id;
             if(id){
                 this.$.get(`${HttpUrl.findArticleInfo}${id}`).then( results => {
                     this.article = results;
@@ -151,7 +154,8 @@ export default {
                     this.$alert(errmsg, '上传文章成功', {
                         confirmButtonText: '确定',
                         callback: () => {
-                            location.reload();
+                            // location.reload();
+                            this.$router.push('/articleList');
                         }
                     });
                 });

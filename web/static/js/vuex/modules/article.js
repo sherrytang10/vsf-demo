@@ -2,10 +2,8 @@ const getters = {}
 const actions = {};
 const mutations = {
     setArticleList(state, articleList) {
-        console.log(state.firstLoad)
         state.firstLoad = false;
-        state.articleList = articleList;
-        console.log(state.firstLoad)
+        state.articleList.push(...articleList);
     },
     setArticleInfo(state, articleinfo) {
         state.articleinfo = articleinfo;

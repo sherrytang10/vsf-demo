@@ -61,5 +61,5 @@ export default {
 };
 </script>
 <style scoped  lang="scss" type="text/css">
-@import "../../../css/components/authorList.scss";
+@import "../../../css/views/authorList.scss";
 </style>

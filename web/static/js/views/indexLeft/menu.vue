@@ -69,4 +69,4 @@ export default {
   }
 };
 </script>
-<style scoped  lang="scss" type="text/css">@import "../../../css/components/menu.scss";</style>
+<style scoped  lang="scss" type="text/css">@import "../../../css/views/menu.scss";</style>

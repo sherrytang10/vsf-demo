@@ -6,9 +6,10 @@ import routes from './router/route.js';
 import axios from 'axios';
 import '../js/common/CommFunc.js';
 import '../css/layout.scss';
-
+import Components from './components/index.js';
 import IndexVue from './views/index.vue';
 Vue.use(VueRouter);
+Vue.use(Components);
 // Vue.use(CommFunc);
 
 

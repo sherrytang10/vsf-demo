@@ -25,8 +25,8 @@
 </template>
 <script>
 import { mapState, mapMutations } from "vuex";
-import indexLeft from "../components/indexLeft.vue";
-import sfArticle from "../components/article/sfArticle.vue";
+import indexLeft from "./indexLeft.vue";
+import sfArticle from "./article/sfArticle.vue";
 export default {
   name: "index-home",
   components: {
@@ -46,7 +46,7 @@ export default {
 };
 </script>
 <style scoped  lang="scss" type="text/css">
-@import "../../css/components/index.scss";
+@import "../../css/views/index.scss";
 /* header{
         height: 5px;
         background: linear-gradient(to right, #ffa800, #ff6d25);

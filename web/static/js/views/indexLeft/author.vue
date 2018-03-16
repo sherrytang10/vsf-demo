@@ -46,5 +46,5 @@ export default {
 };
 </script>
 <style scoped  lang="scss" type="text/css">
-@import "../../../css/components/author.scss";
+@import "../../../css/views/author.scss";
 </style>

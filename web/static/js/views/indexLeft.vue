@@ -17,8 +17,8 @@
     </div>
 </template>
 <script>
-    import leftAuthor from '../components/indexLeft/author.vue';
-    import leftMenu from '../components/indexLeft/menu.vue';
+    import leftAuthor from '../views/indexLeft/author.vue';
+    import leftMenu from '../views/indexLeft/menu.vue';
     export default{
         name: 'index-left',
         components:{
@@ -28,5 +28,5 @@
     }
 </script>
 <style scoped  lang="scss" type="text/css">
-    @import '../../css/components/indexLeft.scss';
+    @import '../../css/views/indexLeft.scss';
 </style>
