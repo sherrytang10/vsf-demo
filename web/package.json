@@ -8,6 +8,8 @@
   },
   "scripts": {
     "run": "node app.js",
+    "dev": "set NODE_ENV='develop' && webpack --config webpack.config.js --display-error-details --watch --env=dev ",
+    "build": "SET NODE_ENV='production' webpack --config webpack.config.js  -p -d",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

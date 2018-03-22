@@ -12,7 +12,6 @@ shell.rm('-rf', './dist/')
 shell.mkdir('-p', './dist/js/common')
 shell.cp('-R', './static/js/common/flexible_v2.js', './dist/js/common');
 
-
 module.exports = {
     context: path.resolve(__dirname + "/static/js/"),
     entry: {
@@ -32,7 +31,7 @@ module.exports = {
         // }),
         new webpack.DefinePlugin({
             // 开发环境是不是生产
-            PRODUCTION: JSON.stringify(false),
+            'process.NODE_ENV': process.env.NODE_ENV || 'develop',
             // VERSION: JSON.stringify("5fa3b9"),
             // BROWSER_SUPPORTS_HTML5: true,
             // TWO: "1+1",
